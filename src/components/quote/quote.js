@@ -12,11 +12,12 @@ class Quote extends Component {
   fetchQuote() {
     this.setState({ isLoading: true });
 
-    fetch('http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en')
+    fetch('http://localhost:3000/quotes')
       .then(res => res.json())
       .then(quote => {
+        console.log('this is fetch quote', quote);
         this.setState({
-          quotes: [...this.state.quotes, quote],
+          quotes: quote,
           isLoading: false,
         });
       })
@@ -32,7 +33,7 @@ class Quote extends Component {
   render() {
     return (
       <div>
-        this.state.quotes[0];
+        {this.state.quotes.quoteText}
       </div>
     );
   }
