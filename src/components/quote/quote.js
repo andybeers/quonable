@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 
+function QuoteBody(props) {
+  return (
+    <div>
+      <p>{props.quote}</p>
+        <p>- {props.author}</p>
+        <button onClick={props.fetchQuote}>New Quote</button>
+    </div>
+  );
+};
+
 class Quote extends Component {
   constructor(props) {
     super(props);
     this.state = {
       quotes: [],
+      author: 'Hulk Hogan',
       isLoading: false,
     };
+    this.fetchQuote = this.fetchQuote.bind(this);
   }
 
   fetchQuote() {
@@ -33,7 +45,10 @@ class Quote extends Component {
   render() {
     return (
       <div>
-        {this.state.quotes.quoteText}
+        {this.state.isLoading ? 'Loading!' : <QuoteBody
+          quote={this.state.quotes.quoteText}
+          author={this.state.author}
+          fetchQuote={this.fetchQuote} />}
       </div>
     );
   }
