@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
+import QuoteText from './QuoteText/QuoteText';
+import authors from '../../authors';
 
-function QuoteBody(props) {
-  return (
-    <div>
-      <p>{props.quote}</p>
-        <p>- {props.author}</p>
-        <button onClick={props.fetchQuote}>New Quote</button>
-    </div>
-  );
-};
 
 class Quote extends Component {
   constructor(props) {
     super(props);
     this.state = {
       quotes: [],
-      author: 'Hulk Hogan',
+      author: '',
       isLoading: false,
     };
     this.fetchQuote = this.fetchQuote.bind(this);
@@ -36,6 +29,15 @@ class Quote extends Component {
       .catch(err => {
         console.log(err);
       });
+    
+    this.getRandomAuthor();
+  }
+
+  getRandomAuthor() {
+    const rand = Math.floor(Math.random() * (authors.length + 1));
+    this.setState({
+      author: authors[rand].name,
+    });
   }
 
   componentDidMount() {
@@ -45,7 +47,7 @@ class Quote extends Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? 'Loading!' : <QuoteBody
+        {this.state.isLoading ? 'Loading!' : <QuoteText
           quote={this.state.quotes.quoteText}
           author={this.state.author}
           fetchQuote={this.fetchQuote} />}
