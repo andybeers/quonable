@@ -5,7 +5,7 @@ import Quote from '../quote/Quote';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className='wrapper'>
         <Quote />
       </div>
     );

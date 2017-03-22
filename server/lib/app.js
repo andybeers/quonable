@@ -15,9 +15,11 @@ router
         return res.body;
       })
       .catch(err => {
-        console.log('catchin');
-        const fixedJSON = JSON.parse(err.rawResponse.replace(/\\/g, ''));
-        return fixedJSON;
+        console.log(err.rawResponse);
+        // if (err.status !== 200) throw err;
+        const fixedJSON = err.rawResponse.replace(/\\/g, '');
+        console.log(fixedJSON);
+        return JSON.parse(fixedJSON);
       });
   });
 

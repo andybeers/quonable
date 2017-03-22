@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import './QuoteText.css';
 
 function QuoteText(props) {
   return (
     <div>
       <p>{props.quote}</p>
-        <p>- {props.author}</p>
-        <button onClick={props.fetchQuote}>New Quote</button>
+      <p className='author'>- {props.author}</p>
+      <button onClick={props.fetchQuote}>New Quote</button>
     </div>
   );
 };

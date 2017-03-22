@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import QuoteText from './QuoteText/QuoteText';
 import authors from '../../authors';
 
-
 class Quote extends Component {
   constructor(props) {
     super(props);
