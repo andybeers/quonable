@@ -34,6 +34,16 @@ const goofy = [
   { name: 'TIM "THE TOOL MAN" TAYLOR' },
 ];
 
-const real = [];
+const real = [
+  { name: 'NOAM CHOMSKY' },
+  { name: 'SIGMUND FREUD' },
+  { name: 'MICHEL FOUCAULT' },
+  { name: 'ROBERT FROST' },
+  { name: 'MAYA ANGELOU' },
+  { name: 'LANGSTON HUGHES' },
+  { name: 'EMILY DICKINSON' },
+  { name: 'NELSON MANDELA' },
+  { name: 'MAHATMA GANDHI' },
+];
 
 export default { goofy, real };
