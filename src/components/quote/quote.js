@@ -33,9 +33,9 @@ class Quote extends Component {
   }
 
   getRandomAuthor() {
-    const rand = Math.floor(Math.random() * (authors.length + 1));
+    const rand = Math.floor(Math.random() * (authors.goofy.length + 1));
     this.setState({
-      author: authors[rand].name,
+      author: authors.goofy[rand].name,
     });
   }
 

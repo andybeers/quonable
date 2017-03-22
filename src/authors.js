@@ -1,4 +1,4 @@
-const authorsGoofy = [
+const goofy = [
   { name: 'ROGER GOODELL' },
   { name: 'HULK HOGAN' },
   { name: 'LIL YACHTY' },
@@ -34,6 +34,6 @@ const authorsGoofy = [
   { name: 'TIM "THE TOOL MAN" TAYLOR' },
 ];
 
-const authorsReal = [];
+const real = [];
 
-export default { authorsGoofy, authorsReal };
+export default { goofy, real };
