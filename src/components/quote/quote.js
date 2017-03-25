@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import QuoteText from './QuoteText/QuoteText';
 import authors from '../../authors';
 import quotes from '../../quotes';
 
@@ -7,36 +6,31 @@ class Quote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: [],
-      author: '',
-      isLoading: false,
+      quote: 'Initial',
+      author: 'Initial',
+      quoteRand: 0,
+      authRand: 0,
     };
     this.fetchQuote = this.fetchQuote.bind(this);
   }
 
   fetchQuote() {
-    this.setState({ isLoading: true });
-    const author = this.getRandomAuthor();
-    const quote = this.getRandomQuote();
-    console.log('quote :', quote);
-    console.log('author: ', author);
+    let quoteRand = this.roll(quotes.length);
+    let authRand = this.roll(authors.real.length);
+    let quote = quotes[quoteRand].text;
+    let author = authors.real[authRand].name;
+    console.log(quote);
+    console.log(author);
     this.setState({
-      quotes: quote,
+      quoteRand: this.roll(quotes.length),
+      authRand: this.roll(authors.real.length),
+      quote: quote,
       author: author,
-      isLoading: false,
     });
   }
 
-  getRandomAuthor() {
-    const rand = Math.floor(Math.random() * (authors.real.length + 1));
-    console.log('auth rand: ', rand);
-    return authors.real[rand].name;
-  }
-
-  getRandomQuote() {
-    const rand = Math.floor(Math.random() * (quotes.length + 1));
-    console.log('quote rand: ', rand);
-    return quotes[rand].text;
+  roll(maxRange) {
+    return Math.floor(Math.random() * maxRange);
   }
 
   componentDidMount() {
@@ -46,10 +40,9 @@ class Quote extends Component {
   render() {
     return (
       <div>
-        {this.state.isLoading ? 'Loading!' : <QuoteText
-          quote={this.state.quotes}
-          author={this.state.author}
-          fetchQuote={this.fetchQuote} />}
+        <p>{this.state.quote}</p>
+        <p className='author'>- {this.state.author}</p>
+        <button onClick={this.fetchQuote}>New Quote</button>
       </div>
     );
   }

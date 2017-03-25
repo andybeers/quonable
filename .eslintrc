@@ -8,14 +8,11 @@
     "plugins": [
         "react"
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true
-        },
-        "ecmaVersion": 8,
-        "sourceType": "module"
-    },
+     "parser": "babel-eslint",
+      "settings": {
+        "import/parser": "babel-eslint"
+      },
+
     "rules": {
         "accessor-pairs": 2,
         "arrow-spacing": [1, { "before": true, "after": true }],
@@ -104,7 +101,6 @@
         "object-curly-spacing": [1, "always"],
         "one-var": [1, { "initialized": "never" }],
         "operator-linebreak": 0,
-        "quotes": [1, "single", "avoid-escape"],
         "radix": 2,
         "require-yield": 2,
         "semi": [1, "always"],
@@ -130,10 +126,9 @@
         "react/no-did-update-set-state": 2,
         "react/no-multi-comp": 0,
         "react/no-unknown-property": 2,
-        "react/prop-types": 1,
         "react/react-in-jsx-scope": 2,
         "react/self-closing-comp": 1,
         "react/sort-comp": 0,
         "react/jsx-wrap-multilines": 2
-        }
+    }
 }
