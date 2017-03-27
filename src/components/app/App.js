@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 import Quote from '../quote/Quote';
+import authors from '../../authors';
+import quotes from '../../quotes';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewRealAuth: true,
+      showSeriousQuote: false,
     };
     this.changeView = this.changeView.bind(this);
   }
 
   changeView() {
-    console.log('changing view');
     this.setState({
-      viewRealAuth: !this.state.viewRealAuth,
+      showSeriousQuote: !this.state.showSeriousQuote,
     });
   }
 
   render() {
-    return (
-      <div className='wrapper'>
-        <Quote view={this.state.viewRealAuth}/>
-        <button onClick={this.changeView}>Change View</button>
-      </div>
-    );
+    return this.state.showSeriousQuote
+      ? (
+        <div className='wrapper'>
+          <Quote quotes={quotes.real} authors={authors.goofy}/>
+          <button onClick={this.changeView}>Change View</button>
+        </div>
+      )
+      : (
+        <div className='wrapper'>
+          <Quote quotes={quotes.goofy} authors={authors.real}/>
+          <button onClick={this.changeView}>Change View</button>
+        </div>
+      );
   }
 }
 

@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
-import authors from '../../authors';
-import quotes from '../../quotes';
 
 class Quote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quote: 'Initial',
-      author: 'Initial',
-      quoteRand: 0,
-      authRand: 0,
+      quote: 'initial',
+      author: 'initial',
     };
     this.fetchQuote = this.fetchQuote.bind(this);
   }
 
   fetchQuote() {
-    let quoteRand = this.roll(quotes.length);
-    let authRand = this.roll(authors.real.length);
-    let quote = quotes[quoteRand].text;
-    let author = authors.real[authRand].name;
-    console.log(quote);
-    console.log(author);
+    let quoteRand = this.roll(this.props.quotes.length);
+    let authRand = this.roll(this.props.authors.length);
+
     this.setState({
-      quoteRand: this.roll(quotes.length),
-      authRand: this.roll(authors.real.length),
-      quote: quote,
-      author: author,
+      quote: this.props.quotes[quoteRand].text,
+      author: this.props.authors[authRand].name,
     });
   }
 
