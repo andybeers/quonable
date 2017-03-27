@@ -1,4 +1,4 @@
-const quotes = [
+const goofy = [
   { text: 'If a man does not have the sauce, then he is lost. But the same man can be lost in the sauce.' },
   { text: 'I\'m not ranting and raving. I\'m just telling you. You know, you\'re dishonest people. But I\'m not ranting and raving.' },
   { text: 'My name is whatever anyone wants it to be. As a matter of fact, I might change my name to Captain Funzo, then what are they going to say?' },
@@ -9,4 +9,9 @@ const quotes = [
   { text: 'Drugs are bad I\'m acknowledging that but when I\'m on the drugs I don\'t have a problem wit that.' }
 ];
 
-module.exports = quotes;
+const real = [
+  { text: 'Real quote' },
+  { text: 'Real quote2' },
+];
+
+export default { goofy, real };

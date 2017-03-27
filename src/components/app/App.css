@@ -9,14 +9,14 @@
 
 p {
   font-family: 'Lora', serif;
-  font-size: 4em;
+  font-size: 1.5em;
   color: deepskyblue;
   margin: .5em 0;
 }
 
 .author {
   font-family: 'Roboto', sans-serif;
-  font-size: 2.5em;
+  font-size: 1.25em;
   color: salmon;
   text-align: right;
 }
@@ -28,4 +28,48 @@ button {
   background-color: deepskyblue;
   color: white;
   font-family: 'Helvetica', sans-serif;
+}
+
+@media screen and (min-width: 400px) {
+
+  p {
+    font-size: 1.75em;
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+
+  p {
+    font-size: 2.5em;
+  }
+
+  .author {
+    font-size: 1.75em;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+
+  p {
+    font-size: 3em;
+  }
+
+  .author {
+    font-size: 2.25em;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  p {
+    font-size: 3.75em;
+  }
+
+  .author {
+    font-size: 2.5em;
+  }
+
 }
