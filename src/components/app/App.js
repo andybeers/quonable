@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Quote from '../quote/Quote';
+import Quote from '../Quote/Quote';
+import AppHeader from '../AppHeader/AppHeader';
 import authors from '../../authors';
 import quotes from '../../quotes';
 
@@ -23,12 +24,14 @@ class App extends Component {
     return this.state.showSeriousQuote
       ? (
         <div className='wrapper'>
+          <AppHeader />
           <Quote quotes={quotes.real} authors={authors.goofy}/>
           <button onClick={this.changeView}>Change View</button>
         </div>
       )
       : (
         <div className='wrapper'>
+          <AppHeader />
           <Quote quotes={quotes.goofy} authors={authors.real}/>
           <button onClick={this.changeView}>Change View</button>
         </div>
