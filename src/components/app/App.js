@@ -16,6 +16,10 @@ class App extends Component {
     this.changeView = this.changeView.bind(this);
   }
 
+  newQuote() {
+    
+  }
+
   changeView() {
     this.setState({
       showSeriousQuote: !this.state.showSeriousQuote,
@@ -26,7 +30,7 @@ class App extends Component {
     return (
         <div>
           <AppHeader />
-          <Quote quotes={quotes.real} authors={authors.goofy}/>
+          <Quote quote={quotes.goofy[0].text} author={authors.real[0].name}/>
           <button onClick={this.changeView}>Change View</button>
         </div>
     );

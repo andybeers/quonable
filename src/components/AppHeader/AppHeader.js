@@ -3,9 +3,9 @@ import './AppHeader.css';
 
 const AppHeader = () => {
   return (
-    <div>
+    <header>
       <h1>quonable</h1>
-    </div>
+    </header>
   );
 };
 
