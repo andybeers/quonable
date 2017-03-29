@@ -12,12 +12,29 @@ class App extends Component {
       showSeriousQuote: false,
       quoteRand: 0,
       authRand: 0,
+      quote: 'Init',
+      author: 'Init',
     };
     this.changeView = this.changeView.bind(this);
+    this.newQuote = this.newQuote.bind(this);
   }
 
   newQuote() {
-    
+    let quoteView = this.state.showSeriousQuote
+      ? 'real' : 'goofy';
+    let authView = this.state.showSeriousQuote
+      ? 'goofy' : 'real';
+    let quoteRand = this.roll(quotes[quoteView].length);
+    let authRand = this.roll(authors[authView].length);
+    let quote = quotes[quoteView][quoteRand].text;
+    let author = authors[authView][authRand].name;
+
+    this.setState({
+      quoteRand: quoteRand,
+      authRand: authRand,
+      quote: quote,
+      author: author,
+    });
   }
 
   changeView() {
@@ -26,11 +43,15 @@ class App extends Component {
     });
   }
 
+  roll(maxRange) {
+    return Math.floor(Math.random() * maxRange);
+  }
+
   render() {
     return (
         <div>
           <AppHeader />
-          <Quote quote={quotes.goofy[0].text} author={authors.real[0].name}/>
+          <Quote quote={this.state.quote} author={this.state.author} newQuote={this.newQuote} />
           <button onClick={this.changeView}>Change View</button>
         </div>
     );
