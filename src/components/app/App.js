@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       showSeriousQuote: false,
+      quoteRand: 0,
+      authRand: 0,
     };
     this.changeView = this.changeView.bind(this);
   }
@@ -21,21 +23,13 @@ class App extends Component {
   }
 
   render() {
-    return this.state.showSeriousQuote
-      ? (
-        <div className='wrapper'>
+    return (
+        <div>
           <AppHeader />
           <Quote quotes={quotes.real} authors={authors.goofy}/>
           <button onClick={this.changeView}>Change View</button>
         </div>
-      )
-      : (
-        <div className='wrapper'>
-          <AppHeader />
-          <Quote quotes={quotes.goofy} authors={authors.real}/>
-          <button onClick={this.changeView}>Change View</button>
-        </div>
-      );
+    );
   }
 }
 
