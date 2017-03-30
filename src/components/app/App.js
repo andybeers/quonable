@@ -57,7 +57,12 @@ class App extends Component {
     return (
         <div className='flexWrapper'>
           <AppHeader />
-          <Quote quote={this.state.quote} author={this.state.author} newQuote={this.newQuote} changeView={this.changeView}/>
+          <Quote 
+            quote={this.state.quote}
+            author={this.state.author}
+            newQuote={this.newQuote}
+            changeView={this.changeView}
+          />
           <AppFooter />
         </div>
     );
