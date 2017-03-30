@@ -10,32 +10,56 @@ class App extends Component {
     super(props);
     this.state = {
       showSeriousQuote: false,
+      quoteRand: 0,
+      authRand: 0,
+      quote: 'Init',
+      author: 'Init',
     };
     this.changeView = this.changeView.bind(this);
+    this.newQuote = this.newQuote.bind(this);
+  }
+
+  newQuote() {
+    let quoteView = this.state.showSeriousQuote
+      ? 'real' : 'goofy';
+    let authView = this.state.showSeriousQuote
+      ? 'goofy' : 'real';
+    let quoteRand = this.roll(quotes[quoteView].length);
+    let authRand = this.roll(authors[authView].length);
+    let quote = quotes[quoteView][quoteRand].text;
+    let author = authors[authView][authRand].name;
+
+    this.setState({
+      quoteRand: quoteRand,
+      authRand: authRand,
+      quote: quote,
+      author: author,
+    });
   }
 
   changeView() {
     this.setState({
       showSeriousQuote: !this.state.showSeriousQuote,
     });
+    // this.newQuote();
+  }
+
+  roll(maxRange) {
+    return Math.floor(Math.random() * maxRange);
+  }
+
+  componentDidMount() {
+    this.newQuote();
   }
 
   render() {
-    return this.state.showSeriousQuote
-      ? (
-        <div className='wrapper'>
+    return (
+        <div>
           <AppHeader />
-          <Quote quotes={quotes.real} authors={authors.goofy}/>
+          <Quote quote={this.state.quote} author={this.state.author} newQuote={this.newQuote} />
           <button onClick={this.changeView}>Change View</button>
         </div>
-      )
-      : (
-        <div className='wrapper'>
-          <AppHeader />
-          <Quote quotes={quotes.goofy} authors={authors.real}/>
-          <button onClick={this.changeView}>Change View</button>
-        </div>
-      );
+    );
   }
 }
 

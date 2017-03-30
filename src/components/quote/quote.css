@@ -1,0 +1,85 @@
+.wrapper {
+  padding: 2em;
+  margin: auto;
+  max-width: 70%;
+}
+
+.controls {
+  text-align: right;
+  margin: 1em;
+}
+
+p {
+  font-family: 'Lora', serif;
+  font-size: 1em;
+  color: ghostwhite;
+  margin: .5em 0;
+}
+
+.author {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1em;
+  color: deepskyblue;
+  text-align: right;
+}
+
+button {
+  border-radius: 2px;
+  border: 2px solid white;
+  padding: 8px;
+  background-color: transparent;
+  color: white;
+  font-family: 'Helvetica', sans-serif;
+  cursor: pointer;
+}
+
+.svgBox {
+  background: url(../../imgs/loop.svg);
+  color: white; 
+}
+
+svg {
+  fill: white;
+}
+
+@media screen and (min-width: 400px) {
+
+  p {
+    font-size: 1.25em;
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+
+  p {
+    font-size: 2em;
+  }
+
+  .author {
+    font-size: 1.5em;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+
+  p {
+    font-size: 2.5em;
+  }
+
+  .author {
+    font-size: 2em;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  p {
+    font-size: 3.25em;
+  }
+
+  .author {
+    font-size: 2.25em;
+  }
+}

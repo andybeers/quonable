@@ -1,10 +1,11 @@
 import React from 'react';
+import './AppHeader.css';
 
 const AppHeader = () => {
   return (
-    <div>
-      Yo I'm a header.
-    </div>
+    <header>
+      <h1>quonable</h1>
+    </header>
   );
 };
 
