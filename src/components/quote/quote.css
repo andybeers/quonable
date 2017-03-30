@@ -38,7 +38,11 @@ button {
   cursor: pointer;
 }
 
-img {
+span {
+  color: white;
+}
+
+svg {
   fill: white;
 }
 
