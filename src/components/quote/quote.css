@@ -1,7 +1,8 @@
 .wrapper {
   padding: 2em;
   margin: auto;
-  max-width: 70%;
+  width: 80%;
+  max-width: 950px;
 }
 
 .controls {
@@ -12,8 +13,12 @@
 p {
   font-family: 'Lora', serif;
   font-size: 1em;
-  color: ghostwhite;
+  color: white;
   margin: .5em 0;
+}
+
+.wrapper p {
+  line-height: 120%;
 }
 
 .author {
