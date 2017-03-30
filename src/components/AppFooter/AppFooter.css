@@ -1,0 +1,23 @@
+footer {
+  background-color: #1c1c1c;
+  margin-top: 3em;
+}
+
+footer div {
+  margin: 0 auto;
+  padding: 1em;
+  width: 80%;
+  max-width: 650px;
+}
+
+footer h3 {
+  color: navajowhite;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1em;
+  margin: .5em 0;
+}
+
+footer p {
+  color: lightgrey;
+  font-size: 1em;
+}

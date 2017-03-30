@@ -1,0 +1,9 @@
+.flexWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  min-height: 80vh;
+  flex: 1;
+}
