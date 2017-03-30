@@ -41,10 +41,15 @@ class App extends Component {
     this.setState({
       showSeriousQuote: !this.state.showSeriousQuote,
     });
+    // this.newQuote();
   }
 
   roll(maxRange) {
     return Math.floor(Math.random() * maxRange);
+  }
+
+  componentDidMount() {
+    this.newQuote();
   }
 
   render() {

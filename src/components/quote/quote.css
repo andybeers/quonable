@@ -1,6 +1,6 @@
 .wrapper {
   padding: 2em;
-  margin: 1em auto;
+  margin: auto;
   max-width: 80%;
 }
 
@@ -18,7 +18,7 @@ p {
 
 .author {
   font-family: 'Helvetica', sans-serif;
-  font-size: 1.25em;
+  font-size: 1em;
   color: deepskyblue;
   text-align: right;
 }
@@ -31,6 +31,11 @@ button {
   color: white;
   font-family: 'Helvetica', sans-serif;
   cursor: pointer;
+}
+
+.svgBox {
+  background: url(../../imgs/loop.svg);
+  color: white; 
 }
 
 @media screen and (min-width: 400px) {
@@ -48,7 +53,7 @@ button {
   }
 
   .author {
-    font-size: 1.75em;
+    font-size: 1.5em;
   }
 
 }
@@ -60,7 +65,7 @@ button {
   }
 
   .author {
-    font-size: 2.25em;
+    font-size: 2em;
   }
 
 }
@@ -71,6 +76,6 @@ button {
   }
 
   .author {
-    font-size: 2.5em;
+    font-size: 2.25em;
   }
 }
