@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Quote from '../Quote/Quote';
 import AppHeader from '../AppHeader/AppHeader';
+import AppFooter from '../AppFooter/AppFooter';
 import authors from '../../authors';
 import quotes from '../../quotes';
 
@@ -54,10 +55,10 @@ class App extends Component {
 
   render() {
     return (
-        <div>
+        <div className='flexWrapper'>
           <AppHeader />
-          <Quote quote={this.state.quote} author={this.state.author} newQuote={this.newQuote} />
-          <button onClick={this.changeView}>Change View</button>
+          <Quote quote={this.state.quote} author={this.state.author} newQuote={this.newQuote} changeView={this.changeView}/>
+          <AppFooter />
         </div>
     );
   }

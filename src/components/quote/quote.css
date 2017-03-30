@@ -33,12 +33,7 @@ button {
   cursor: pointer;
 }
 
-.svgBox {
-  background: url(../../imgs/loop.svg);
-  color: white; 
-}
-
-svg {
+img {
   fill: white;
 }
 
