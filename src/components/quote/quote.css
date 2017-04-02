@@ -6,6 +6,8 @@
 }
 
 .controls {
+  display: flex;
+  justify-content: space-around;
   text-align: right;
   margin: 1em;
 }

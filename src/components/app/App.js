@@ -11,38 +11,35 @@ class App extends Component {
     super(props);
     this.state = {
       showSeriousQuote: false,
-      quoteRand: 0,
-      authRand: 0,
-      quote: 'Init',
-      author: 'Init',
+      quoteReal: { quote: 'Init', author: 'Init' },
+      quoteGoofy: { quote: 'Init', author: 'Init' },
     };
     this.changeView = this.changeView.bind(this);
     this.newQuote = this.newQuote.bind(this);
   }
 
   newQuote() {
-    let quoteView = this.state.showSeriousQuote
-      ? 'real' : 'goofy';
-    let authView = this.state.showSeriousQuote
-      ? 'goofy' : 'real';
-    let quoteRand = this.roll(quotes[quoteView].length);
-    let authRand = this.roll(authors[authView].length);
-    let quote = quotes[quoteView][quoteRand].text;
-    let author = authors[authView][authRand].name;
+    let quoteRealRand = this.roll(quotes.real.length);
+    let quoteGoofyRand = this.roll(quotes.goofy.length);
+    let authRealRand = this.roll(authors.real.length);
+    let authGoofyRand = this.roll(authors.goofy.length);
+    let quoteReal = {
+      quote: quotes.real[quoteRealRand].text,
+      author: authors.goofy[authGoofyRand].name
+    };
+    let quoteGoofy = {
+      quote: quotes.goofy[quoteGoofyRand].text,
+      author: authors.real[authRealRand].name
+    };
 
     this.setState({
-      quoteRand: quoteRand,
-      authRand: authRand,
-      quote: quote,
-      author: author,
+      quoteReal: quoteReal,
+      quoteGoofy: quoteGoofy,
     });
   }
 
   changeView() {
-    this.setState({
-      showSeriousQuote: !this.state.showSeriousQuote,
-    });
-    // this.newQuote();
+    this.setState(prevState => ({ showSeriousQuote: !prevState.showSeriousQuote }));
   }
 
   roll(maxRange) {
@@ -58,8 +55,9 @@ class App extends Component {
         <div className='flexWrapper'>
           <AppHeader />
           <Quote 
-            quote={this.state.quote}
-            author={this.state.author}
+            showSeriousQuote={this.state.showSeriousQuote}
+            quoteReal={this.state.quoteReal}
+            quoteGoofy={this.state.quoteGoofy}
             newQuote={this.newQuote}
             changeView={this.changeView}
           />
