@@ -7,7 +7,7 @@
 
 .controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   text-align: right;
   margin: 1em;
 }
