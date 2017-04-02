@@ -46,6 +46,9 @@ const real = [
   { name: 'MAHATMA GANDHI' },
   { name: 'JANE AUSTEN' },
   { name: 'ERNEST HEMINGWAY' },
+  { name: 'ALBERT CAMUS' },
+  { name: 'ELEANOR ROOSEVELT' },
+  { name: 'HENRY DAVID THOREAU' },
 ];
 
 export default { goofy, real };
