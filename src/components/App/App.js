@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Quote from '../Quote/Quote';
-// import AppHeader from '../AppHeader/AppHeader';
 import AppFooter from '../AppFooter/AppFooter';
 import authors from '../../authors';
 import quotes from '../../quotes';
@@ -53,7 +52,6 @@ class App extends Component {
   render() {
     return (
         <div className='flexWrapper'>
-          {/*<AppHeader />*/}
           <Quote 
             showSeriousQuote={this.state.showSeriousQuote}
             quoteReal={this.state.quoteReal}
