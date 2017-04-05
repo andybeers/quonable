@@ -15,8 +15,8 @@ class Quote extends Component {
           <p className='author'>- {this.props[QUOTE_VIEW].author}</p>
         </div>
         <div className='controls'>
+          <button onClick={this.props.changeView}>SWAP</button>
           <button onClick={this.props.newQuote}>NEW QUOTE</button>
-          <button onClick={this.props.changeView}>CHANGE VIEW</button>
         </div>
       </main>
     );
