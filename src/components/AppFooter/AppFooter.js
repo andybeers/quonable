@@ -12,7 +12,7 @@ const AppFooter = () => {
         </p>
         <p><i>"This dictionary's no good, we need a medical dictionary! When a patient is difficult, you quone him." - Kramer</i></p> 
       </div>
-      <p className='copy'>Andy Beers &copy; 2017 <a href=''>GITHUB</a></p>
+      <p className='copy'>Andy Beers &copy; 2017 <a href='https://github.com/andybeers/quonable'>GITHUB</a></p>
     </footer>
   );
 };
