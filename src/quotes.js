@@ -8,6 +8,12 @@ const goofy = [
   { text: 'I actually don\'t like thinking. I think people think I like to think a lot. And I don\'t. I don’t like to think.' },
   { text: 'Drugs are bad I\'m acknowledging that but when I\'m on the drugs I don\'t have a problem wit that.' },
   { text: 'A day without sunshine is like, you know, night.' },
+  { text: 'My biggest dream was so big -- I couldn\'t remember it, it was so big.' },
+  { text: 'Rain on my head... Call that brainstorming.' },
+  { text: 'You would have to eat 5 apples today to get the same nutritional value as an apple from 1950.' },
+  { text: 'When they can\'t do what you do, they get real mad, you ever had salt and vinegar chips?' },
+  { text: 'What if there\'s people saying something, something in different languages but you can\'t even understand it?' },
+  { text: 'There\'s a gummy bear in my throat. It\'s large so you might have difficulties hearing me.' },
 ];
 
 const real = [
@@ -21,6 +27,9 @@ const real = [
   { text: 'I am enough of an artist to draw freely upon my imagination. Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.' },
   { text: 'There is no greater agony than bearing an untold story inside you.' },
   { text: 'Love looks not with the eyes, but with the mind, and therefore is winged Cupid painted blind.' },
+  { text: 'To thine own self be true, and it must follow, as the night the day, thou canst not then be false to any man.' },
+  { text: 'Life ... is a tale told by an idiot, full of sound and fury, signifying nothing.' },
+  { text: 'Men at some time are the masters of their fates: The fault, dear Brutus, is not in our stars, but in ourselves, that we are underlings.' },
 ];
 
 export default { goofy, real };
