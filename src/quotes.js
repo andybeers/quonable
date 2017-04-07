@@ -8,12 +8,13 @@ const goofy = [
   { text: 'I actually don\'t like thinking. I think people think I like to think a lot. And I don\'t. I don’t like to think.' },
   { text: 'Drugs are bad I\'m acknowledging that but when I\'m on the drugs I don\'t have a problem wit that.' },
   { text: 'A day without sunshine is like, you know, night.' },
-  { text: 'My biggest dream was so big -- I couldn\'t remember it, it was so big.' },
+  { text: 'My biggest dream was so big - I couldn\'t remember it, it was so big.' },
   { text: 'Rain on my head... Call that brainstorming.' },
   { text: 'You would have to eat 5 apples today to get the same nutritional value as an apple from 1950.' },
   { text: 'When they can\'t do what you do, they get real mad, you ever had salt and vinegar chips?' },
   { text: 'What if there\'s people saying something, something in different languages but you can\'t even understand it?' },
   { text: 'There\'s a gummy bear in my throat. It\'s large so you might have difficulties hearing me.' },
+  { text: 'My greatest pain in life is that I will never be able to see myself perform live.' },
 ];
 
 const real = [
