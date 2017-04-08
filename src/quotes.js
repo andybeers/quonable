@@ -15,13 +15,12 @@ const goofy = [
   { text: 'What if there\'s people saying something, something in different languages but you can\'t even understand it?' },
   { text: 'There\'s a gummy bear in my throat. It\'s large so you might have difficulties hearing me.' },
   { text: 'My greatest pain in life is that I will never be able to see myself perform live.' },
-  { text: '' },
-  { text: '' },
-  { text: '' },
-  { text: '' },
-  { text: '' },
-  { text: '' },
-  { text: '' },
+  { text: 'Hey, ever had a big problem taking care of your eggs and keeping them from getting squashed or spoiled? Keep em outside, except if it\'s hot out, then you are out of luck pal.' },
+  { text: 'If you\'re raking the leaves and it gets all over your driveway, just hose it off dummy.' },
+  { text: 'I don\'t like sand. It\'s coarse and rough and irritating and it gets everywhere.' },
+  { text: 'Don\'t try it, Anakin. I have the high ground!' },
+  { text: 'Did you ever hear the tragedy of Darth Plagueis The Wise?. I thought not. It\'s not a story the Jedi would tell you.' },
+  { text: 'Now THIS is pod racing!' },
 ];
 
 const real = [
