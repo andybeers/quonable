@@ -1,0 +1,22 @@
+exports[`Top level App Renders App correctly 1`] = `
+<div
+  className="flexWrapper">
+  <Quote
+    changeView={[Function]}
+    newQuote={[Function]}
+    quoteGoofy={
+      Object {
+        "author": "Init",
+        "quote": "Init",
+      }
+    }
+    quoteReal={
+      Object {
+        "author": "Init",
+        "quote": "Init",
+      }
+    }
+    showSeriousQuote={false} />
+  <AppFooter />
+</div>
+`;
