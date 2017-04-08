@@ -15,6 +15,13 @@ const goofy = [
   { text: 'What if there\'s people saying something, something in different languages but you can\'t even understand it?' },
   { text: 'There\'s a gummy bear in my throat. It\'s large so you might have difficulties hearing me.' },
   { text: 'My greatest pain in life is that I will never be able to see myself perform live.' },
+  { text: '' },
+  { text: '' },
+  { text: '' },
+  { text: '' },
+  { text: '' },
+  { text: '' },
+  { text: '' },
 ];
 
 const real = [
