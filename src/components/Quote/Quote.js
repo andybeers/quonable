@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AppHeader from '../AppHeader/AppHeader';
 import './Quote.css';
 
@@ -21,6 +22,20 @@ class Quote extends Component {
       </main>
     );
   }
+};
+
+Quote.propTypes = {
+  showSeriousQuote: PropTypes.bool.isRequired,
+  quoteReal: PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }).isRequired,
+  quoteGoofy: PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }).isRequired,
+  newQuote: PropTypes.func,
+  changeView: PropTypes.func
 };
 
 export default Quote;
