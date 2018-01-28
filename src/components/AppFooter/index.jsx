@@ -1,7 +1,7 @@
 import React from 'react';
 import './AppFooter.css';
 
-const AppFooter = () => {
+function AppFooter() {
   return (
     <footer>
       <div>
