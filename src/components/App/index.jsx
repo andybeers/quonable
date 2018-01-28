@@ -6,18 +6,13 @@ import authors from '../../authors';
 import quotes from '../../quotes';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showSeriousQuote: false,
-      quoteReal: { quote: 'Init', author: 'Init' },
-      quoteGoofy: { quote: 'Init', author: 'Init' },
-    };
-    this.changeView = this.changeView.bind(this);
-    this.newQuote = this.newQuote.bind(this);
+  state = {
+    showSeriousQuote: false,
+    quoteReal: { quote: 'Init', author: 'Init' },
+    quoteGoofy: { quote: 'Init', author: 'Init' },
   }
 
-  newQuote() {
+  newQuote = () => {
     let quoteRealRand = this.roll(quotes.real.length);
     let quoteGoofyRand = this.roll(quotes.goofy.length);
     let authRealRand = this.roll(authors.real.length);
@@ -37,7 +32,7 @@ class App extends Component {
     });
   }
 
-  changeView() {
+  changeView = () => {
     this.setState(prevState => ({ showSeriousQuote: !prevState.showSeriousQuote }));
   }
 
