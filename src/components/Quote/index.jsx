@@ -3,6 +3,25 @@ import PropTypes from 'prop-types';
 import AppHeader from '../AppHeader';
 import './Quote.css';
 
+Quote.propTypes = {
+  showSeriousQuote: PropTypes.bool.isRequired,
+  quoteReal: PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }).isRequired,
+  quoteGoofy: PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }).isRequired,
+  newQuote: PropTypes.func,
+  changeView: PropTypes.func
+};
+
+Quote.defaultProps = {
+  newQuote: () => {},
+  changeView: () => {},
+};
+
 function Quote(props) {
   let QUOTE_VIEW = props.showSeriousQuote ? 'quoteReal' : 'quoteGoofy';
   let PICTURE_VIEW = props.showSeriousQuote ? 'mainContent2' : 'mainContent1';
@@ -19,20 +38,6 @@ function Quote(props) {
       </div>
     </main>
   );
-};
-
-Quote.propTypes = {
-  showSeriousQuote: PropTypes.bool.isRequired,
-  quoteReal: PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
-  }).isRequired,
-  quoteGoofy: PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
-  }).isRequired,
-  newQuote: PropTypes.func,
-  changeView: PropTypes.func
 };
 
 export default Quote;
