@@ -1,7 +1,7 @@
 import React from 'react';
 import './AppHeader.css';
 
-const AppHeader = () => {
+function AppHeader() {
   return (
     <header>
       <h1>quonable</h1>
