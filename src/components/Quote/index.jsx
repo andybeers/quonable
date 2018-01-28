@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppHeader from '../AppHeader/AppHeader';
+import AppHeader from '../AppHeader';
 import './Quote.css';
 
 function Quote(props) {

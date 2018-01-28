@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Quote from '../Quote/Quote';
-import AppFooter from '../AppFooter/AppFooter';
+import Quote from '../Quote';
+import AppFooter from '../AppFooter';
 import authors from '../../authors';
 import quotes from '../../quotes';
 
