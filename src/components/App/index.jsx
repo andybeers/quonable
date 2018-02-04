@@ -1,63 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { generateQuote, toggleView } from '../../dux';
 import './App.css';
 import Quote from '../Quote';
 import AppFooter from '../AppFooter';
-import authors from '../../authors';
-import quotes from '../../quotes';
 
-class App extends Component {
-  state = {
-    showSeriousQuote: false,
-    quoteReal: { quote: 'Init', author: 'Init' },
-    quoteGoofy: { quote: 'Init', author: 'Init' },
-  }
+let App = (props) => {
+  return (
+      <div className='flexWrapper'>
+        <Quote 
+          text={props.text}
+          author={props.author}
+          toggleView={props.toggleView}
+          generateQuote={props.generateQuote}
+        />
+        <AppFooter />
+      </div>
+  );
+};
 
-  newQuote = () => {
-    let quoteRealRand = this.roll(quotes.real.length);
-    let quoteGoofyRand = this.roll(quotes.goofy.length);
-    let authRealRand = this.roll(authors.real.length);
-    let authGoofyRand = this.roll(authors.goofy.length);
-    let quoteReal = {
-      quote: quotes.real[quoteRealRand].text,
-      author: authors.goofy[authGoofyRand].name
-    };
-    let quoteGoofy = {
-      quote: quotes.goofy[quoteGoofyRand].text,
-      author: authors.real[authRealRand].name
-    };
+const mapStateToProps = state => {
+  return {
+    text: state.text,
+    author: state.author,
+  };
+};
 
-    this.setState({
-      quoteReal: quoteReal,
-      quoteGoofy: quoteGoofy,
-    });
-  }
+const mapDispatchToProps = dispatch => {
+  return {
+    generateQuote: () => {
+      dispatch(generateQuote(true));
+    },
+    toggleView: () => {
+      dispatch(toggleView());
+    }
+  };
+};
 
-  changeView = () => {
-    this.setState(prevState => ({ showSeriousQuote: !prevState.showSeriousQuote }));
-  }
-
-  roll(maxRange) {
-    return Math.floor(Math.random() * maxRange);
-  }
-
-  componentDidMount() {
-    this.newQuote();
-  }
-
-  render() {
-    return (
-        <div className='flexWrapper'>
-          <Quote 
-            showSeriousQuote={this.state.showSeriousQuote}
-            quoteReal={this.state.quoteReal}
-            quoteGoofy={this.state.quoteGoofy}
-            newQuote={this.newQuote}
-            changeView={this.changeView}
-          />
-          <AppFooter />
-        </div>
-    );
-  }
-}
+App = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default App;

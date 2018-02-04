@@ -1,10 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import App from './components/App';
-import 'normalize.css';
-import './index.css';
+import rootReducer from './dux';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+require('normalize.css');
+require('./index.css');
+
+let store = createStore(rootReducer);
+
+render(
+  <Provider store={store}>
+    <App />
+    </Provider>,
+    document.getElementById('root')
 );
