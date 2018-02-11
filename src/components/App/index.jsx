@@ -8,7 +8,7 @@ import AppFooter from '../AppFooter';
 class App extends Component {
 
   componentDidMount() {
-    this.props.generateQuote();
+    this.props.generateQuote(this.props.goofyQuote);
   }
 
   render() {
@@ -32,6 +32,7 @@ const mapStateToProps = state => {
   return {
     text: state.text,
     author: state.author,
+    goofyQuote: state.goofyQuote
   };
 };
 
