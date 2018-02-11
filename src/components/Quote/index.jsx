@@ -1,43 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AppHeader from '../AppHeader';
 import './Quote.css';
 
-Quote.propTypes = {
-  showSeriousQuote: PropTypes.bool.isRequired,
-  quoteReal: PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
-  }).isRequired,
-  quoteGoofy: PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
-  }).isRequired,
-  newQuote: PropTypes.func,
-  changeView: PropTypes.func
-};
-
-Quote.defaultProps = {
-  newQuote: () => {},
-  changeView: () => {},
-};
-
 function Quote(props) {
-  let QUOTE_VIEW = props.showSeriousQuote ? 'quoteReal' : 'quoteGoofy';
-  let PICTURE_VIEW = props.showSeriousQuote ? 'mainContent2' : 'mainContent1';
   return (
-    <main className={PICTURE_VIEW}>
+    <main className={props.goofyQuote ? 'mainContent1' : 'mainContent2'}>
       <AppHeader />
       <div className='wrapper'>
-        <p>{props[QUOTE_VIEW].quote}</p>
-        <p className='author'>- {props[QUOTE_VIEW].author}</p>
+        <p>{props.text}</p>
+        <p className='author'>- {props.author}</p>
       </div>
       <div className='controls'>
-        <button onClick={props.changeView}>SWAP</button>
-        <button onClick={props.newQuote}>NEW QUOTE</button>
+        <button
+          onClick={() => {
+            props.generateQuote(!props.goofyQuote);
+            props.toggleView();
+          }}>
+          Swap
+        </button>
+        <button onClick={() => props.generateQuote(props.goofyQuote)}>New Quote</button>
       </div>
     </main>
   );
 };
 
-export default Quote;
+Quote.propTypes = {
+  text: PropTypes.string,
+  author: PropTypes.string,
+  generateQuote: PropTypes.func,
+  toggleView: PropTypes.func
+};
+
+const mapStateToProps = state => {
+  return {
+    goofyQuote: state.goofyQuote,
+  };
+};
+
+export default connect(mapStateToProps)(Quote);

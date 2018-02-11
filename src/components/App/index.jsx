@@ -1,63 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { quoteActionCreators } from '../../dux';
 import './App.css';
 import Quote from '../Quote';
 import AppFooter from '../AppFooter';
-import authors from '../../authors';
-import quotes from '../../quotes';
 
 class App extends Component {
-  state = {
-    showSeriousQuote: false,
-    quoteReal: { quote: 'Init', author: 'Init' },
-    quoteGoofy: { quote: 'Init', author: 'Init' },
-  }
-
-  newQuote = () => {
-    let quoteRealRand = this.roll(quotes.real.length);
-    let quoteGoofyRand = this.roll(quotes.goofy.length);
-    let authRealRand = this.roll(authors.real.length);
-    let authGoofyRand = this.roll(authors.goofy.length);
-    let quoteReal = {
-      quote: quotes.real[quoteRealRand].text,
-      author: authors.goofy[authGoofyRand].name
-    };
-    let quoteGoofy = {
-      quote: quotes.goofy[quoteGoofyRand].text,
-      author: authors.real[authRealRand].name
-    };
-
-    this.setState({
-      quoteReal: quoteReal,
-      quoteGoofy: quoteGoofy,
-    });
-  }
-
-  changeView = () => {
-    this.setState(prevState => ({ showSeriousQuote: !prevState.showSeriousQuote }));
-  }
-
-  roll(maxRange) {
-    return Math.floor(Math.random() * maxRange);
-  }
 
   componentDidMount() {
-    this.newQuote();
+    this.props.generateQuote(this.props.goofyQuote);
   }
 
   render() {
+    const { text, author, toggleView, generateQuote } = this.props;
+
     return (
         <div className='flexWrapper'>
           <Quote 
-            showSeriousQuote={this.state.showSeriousQuote}
-            quoteReal={this.state.quoteReal}
-            quoteGoofy={this.state.quoteGoofy}
-            newQuote={this.newQuote}
-            changeView={this.changeView}
+            text={text}
+            author={author}
+            toggleView={toggleView}
+            generateQuote={generateQuote}
           />
           <AppFooter />
         </div>
     );
   }
-}
+};
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    text: state.text,
+    author: state.author,
+    goofyQuote: state.goofyQuote
+  };
+};
+
+const mapDispatchToProps = {
+  generateQuote: quoteActionCreators.generateQuote,
+  toggleView: quoteActionCreators.toggleView
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
