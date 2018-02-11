@@ -73,3 +73,7 @@ export const toggleView = () => {
   return { type: TOGGLE_VIEW };
 };
 
+export const quoteActionCreators = {
+  generateQuote,
+  toggleView
+};

@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { generateQuote, toggleView } from '../../dux';
+import { quoteActionCreators } from '../../dux';
 import './App.css';
 import Quote from '../Quote';
 import AppFooter from '../AppFooter';
 
-let App = (props) => {
-  return (
-      <div className='flexWrapper'>
-        <Quote 
-          text={props.text}
-          author={props.author}
-          toggleView={props.toggleView}
-          generateQuote={props.generateQuote}
-        />
-        <AppFooter />
-      </div>
-  );
+class App extends Component {
+
+  componentDidMount() {
+    this.props.generateQuote();
+  }
+
+  render() {
+    const { text, author, toggleView, generateQuote } = this.props;
+
+    return (
+        <div className='flexWrapper'>
+          <Quote 
+            text={text}
+            author={author}
+            toggleView={toggleView}
+            generateQuote={generateQuote}
+          />
+          <AppFooter />
+        </div>
+    );
+  }
 };
 
 const mapStateToProps = state => {
@@ -26,17 +35,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    generateQuote: () => {
-      dispatch(generateQuote(true));
-    },
-    toggleView: () => {
-      dispatch(toggleView());
-    }
-  };
+const mapDispatchToProps = {
+  generateQuote: quoteActionCreators.generateQuote,
+  toggleView: quoteActionCreators.toggleView
 };
 
-App = connect(mapStateToProps, mapDispatchToProps)(App);
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

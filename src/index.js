@@ -8,7 +8,9 @@ import rootReducer from './dux';
 require('normalize.css');
 require('./index.css');
 
-let store = createStore(rootReducer);
+let store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
   <Provider store={store}>

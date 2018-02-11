@@ -1,7 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AppHeader from '../AppHeader';
 import './Quote.css';
+  
+function Quote(props) {
+  return (
+    <main className={props.goofyQuote ? 'mainContent1' : 'mainContent2'}>
+      <AppHeader />
+      <div className='wrapper'>
+        <p>{props.text}</p>
+        <p className='author'>- {props.author}</p>
+      </div>
+      <div className='controls'>
+        <button onClick={props.toggleView}>Swap</button>
+        <button onClick={() => props.generateQuote(props.goofyQuote)}>New Quote</button>
+      </div>
+    </main>
+  );
+};
 
 Quote.propTypes = {
   text: PropTypes.string,
@@ -10,25 +27,10 @@ Quote.propTypes = {
   toggleView: PropTypes.func
 };
 
-// Quote.defaultProps = {
-//   newQuote: () => {},
-//   changeView: () => {},
-// };
-
-function Quote(props) {
-  return (
-    <main className='mainContent1'>
-      <AppHeader />
-      <div className='wrapper'>
-        <p>{props.text}</p>
-        <p className='author'>- {props.author}</p>
-      </div>
-      <div className='controls'>
-        <button onClick={props.swapView}>Swap</button>
-        <button onClick={props.generateQuote}>New Quote</button>
-      </div>
-    </main>
-  );
+const mapStateToProps = state => {
+  return {
+    goofyQuote: state.goofyQuote,
+  };
 };
 
-export default Quote;
+export default connect(mapStateToProps)(Quote);
