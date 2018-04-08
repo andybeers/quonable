@@ -21,7 +21,7 @@ function AppFooter() {
         </p>
         <br />
         <p className="moon-gray copy">
-          ANDY BEERS &copy; 2017{' '}
+          ANDY BEERS &copy; 2017
           <a href="https://github.com/andybeers/quonable" className="ml2 link dim">
             GITHUB
           </a>
