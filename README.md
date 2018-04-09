@@ -1,8 +1,13 @@
 # QUONABLE
+Wisdom, everywhere, kinda.
 
-Built using React.
+Wise quotes from goofy people; goofy quotes from wise people.
+
+Overbuilt with React, Redux, and Tachyons
+
 Live at: https://andybeers.github.io/quonable/
 
-Wise quotes from goofy people; goofy quotes from wise people. BUT WHICH IS WHICH???
+<img src="https://i.imgur.com/z5EEbmY.jpg" alt="Quonable screenshot">
 
-<img src="http://i.imgur.com/c1a7ply.png" alt="Quonable screenshot">
+## Contributing
+Want to add a quote or author? Open a PR!
