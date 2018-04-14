@@ -6,7 +6,6 @@ import App from './components/App'
 import rootReducer from './dux'
 
 require('normalize.css')
-require('./index.css')
 
 let store = createStore(
   rootReducer,
