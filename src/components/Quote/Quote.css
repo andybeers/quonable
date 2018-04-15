@@ -13,3 +13,9 @@
 .authorName {
   color: navajowhite;
 }
+
+button:focus,
+button:hover {
+  outline: 0;
+  border: solid 2px lightblue;
+}

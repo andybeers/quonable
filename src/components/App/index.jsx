@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { quoteActionCreators } from '../../dux'
-import './App.css'
+
 import Quote from '../Quote'
 import AppFooter from '../AppFooter'
+import { quoteActionCreators } from '../../dux'
+import './App.css'
 
 class App extends Component {
   componentDidMount() {

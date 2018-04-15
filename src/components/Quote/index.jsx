@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
 import AppHeader from '../AppHeader'
 import './Quote.css'
 
@@ -8,7 +9,7 @@ function Quote(props) {
   return (
     <main className={props.goofyQuote ? 'mainContent1' : 'mainContent2'}>
       <AppHeader />
-      <div className="w-80-ns mw-4-ns mv4 pa4 center m-fadeIn">
+      <div className="w-80-ns mw-4-ns mv4 pa4 center">
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
           <p className="f4 f3-m f2-l lh-copy mt0 white">{props.text}</p>
           <cite className="f5 ttu tracked fs-normal authorName">
