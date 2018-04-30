@@ -28,13 +28,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    text: state.text,
-    author: state.author,
-    goofyQuote: state.goofyQuote
-  }
-}
+const mapStateToProps = store => ({
+  text: store.text,
+  author: store.author,
+  goofyQuote: store.goofyQuote
+})
 
 const mapDispatchToProps = {
   generateQuote: quoteActionCreators.generateQuote,

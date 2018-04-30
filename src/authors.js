@@ -10,7 +10,6 @@ const goofy = [
   { name: 'JEAN-CLAUDE VAN DAMME' },
   { name: 'DEREK JETER' },
   { name: 'MATTHEW MCCONAUGHEY' },
-  { name: 'HOWARD STERN, EPISODE 256: "STRIPPER SECRETS"' },
   { name: 'EDDIE VAN HALEN' },
   { name: 'RICHARD SIMMONS' },
   { name: 'COOLIO' },
@@ -32,8 +31,8 @@ const goofy = [
   { name: 'ARNOLD SCHWARZENEGGER IN "JINGLE ALL THE WAY"' },
   { name: 'JUDGE DREDD' },
   { name: 'TIM "THE TOOL MAN" TAYLOR' },
-  { name: 'JADEN SMITH' },
-];
+  { name: 'JADEN SMITH' }
+]
 
 const real = [
   { name: 'NOAM CHOMSKY' },
@@ -54,7 +53,7 @@ const real = [
   { name: 'KURT VONNEGUT' },
   { name: 'BERTRAND RUSSEL' },
   { name: 'WINSTON CHURCHILL' },
-  { name: 'PRINCESS DIANA' },
-];
+  { name: 'PRINCESS DIANA' }
+]
 
-export default { goofy, real };
+export default { goofy, real }

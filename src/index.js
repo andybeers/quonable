@@ -8,7 +8,7 @@ import './index.css'
 import App from './components/App'
 import rootReducer from './dux'
 
-let store = createStore(
+const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
