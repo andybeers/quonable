@@ -1,13 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { string, func } from 'prop-types'
 
 import AppHeader from '../AppHeader'
+import Button from '../Button'
 import './Quote.css'
+
+const propTypes = {
+  text: string.isRequired,
+  author: string.isRequired,
+  generateQuote: func.isRequired,
+  toggleView: func.isRequired,
+}
 
 function Quote(props) {
   return (
-    <main className={props.goofyQuote ? 'mainContent1' : 'mainContent2'}>
+    <main className={`quote-body-${props.goofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
       <div className="w-80-ns mw-4-ns mv4 pa4 center">
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
@@ -18,37 +26,26 @@ function Quote(props) {
         </blockquote>
       </div>
       <div className="pa4 mt2 sans-serif">
-        <button
-          className="f6 br3 ph3 pv2 mb3 mr3 dib near-white bg-transparent bw1 b--white pointer"
-          onClick={() => props.generateQuote(props.goofyQuote)}
-        >
+        <Button onClick={() => props.generateQuote(props.goofyQuote)}>
           New Quote
-        </button>
-        <button
-          className="f6 br3 ph3 pv2 mb3 dib near-white bg-transparent bw1 b--near-white pointer"
+        </Button>
+        <Button
+          className="ml3"
           onClick={() => {
             props.generateQuote(!props.goofyQuote)
             props.toggleView()
           }}
         >
           Invert Wisdom
-        </button>
+        </Button>
       </div>
     </main>
   )
 }
 
-Quote.propTypes = {
-  text: PropTypes.string,
-  author: PropTypes.string,
-  generateQuote: PropTypes.func,
-  toggleView: PropTypes.func
-}
+const mapStateToProps = state => ({
+  goofyQuote: state.goofyQuote,
+})
 
-const mapStateToProps = state => {
-  return {
-    goofyQuote: state.goofyQuote
-  }
-}
-
+Quote.propTypes = propTypes
 export default connect(mapStateToProps)(Quote)

@@ -36,7 +36,7 @@ const goofyQuote = (state = true, action) => {
 const rootReducer = combineReducers({
   text,
   author,
-  goofyQuote
+  goofyQuote,
 })
 
 export default rootReducer
@@ -63,7 +63,7 @@ export const generateQuote = goofyQuote => {
   return {
     type: GENERATE_QUOTE,
     text: text,
-    author: author
+    author: author,
   }
 }
 
@@ -73,5 +73,5 @@ export const toggleView = () => {
 
 export const quoteActionCreators = {
   generateQuote,
-  toggleView
+  toggleView,
 }
