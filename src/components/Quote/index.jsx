@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import AppHeader from '../AppHeader'
+import Button from '../Button'
 import './Quote.css'
 
 function Quote(props) {
@@ -18,21 +19,17 @@ function Quote(props) {
         </blockquote>
       </div>
       <div className="pa4 mt2 sans-serif">
-        <button
-          className="f6 br3 ph3 pv2 mb3 mr3 dib near-white bg-transparent bw1 b--white pointer"
-          onClick={() => props.generateQuote(props.goofyQuote)}
-        >
+        <Button onClick={() => props.generateQuote(props.goofyQuote)}>
           New Quote
-        </button>
-        <button
-          className="f6 br3 ph3 pv2 mb3 dib near-white bg-transparent bw1 b--near-white pointer"
+        </Button>
+        <Button
           onClick={() => {
             props.generateQuote(!props.goofyQuote)
             props.toggleView()
           }}
         >
           Invert Wisdom
-        </button>
+        </Button>
       </div>
     </main>
   )
@@ -42,12 +39,12 @@ Quote.propTypes = {
   text: PropTypes.string,
   author: PropTypes.string,
   generateQuote: PropTypes.func,
-  toggleView: PropTypes.func
+  toggleView: PropTypes.func,
 }
 
 const mapStateToProps = state => {
   return {
-    goofyQuote: state.goofyQuote
+    goofyQuote: state.goofyQuote,
   }
 }
 
