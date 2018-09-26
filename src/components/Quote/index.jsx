@@ -15,7 +15,7 @@ const propTypes = {
 
 function Quote(props) {
   return (
-    <main className={props.goofyQuote ? 'mainContent1' : 'mainContent2'}>
+    <main className={`quote-body-${props.goofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
       <div className="w-80-ns mw-4-ns mv4 pa4 center">
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
@@ -30,6 +30,7 @@ function Quote(props) {
           New Quote
         </Button>
         <Button
+          className="ml3"
           onClick={() => {
             props.generateQuote(!props.goofyQuote)
             props.toggleView()
