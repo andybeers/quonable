@@ -10,7 +10,7 @@ const defaultProps = {
   className: '',
 }
 
-const Button = ({ children, className, onClick }) => {
+function Button({ children, className, onClick }) {
   return (
     <button
       className={`f6 br3 ph3 pv2 mb3 dib near-white bg-transparent bw1 b--near-white pointer ${className}`}

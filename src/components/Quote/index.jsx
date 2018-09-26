@@ -1,10 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { string, func } from 'prop-types'
 
 import AppHeader from '../AppHeader'
 import Button from '../Button'
 import './Quote.css'
+
+const propTypes = {
+  text: string.isRequired,
+  author: string.isRequired,
+  generateQuote: func.isRequired,
+  toggleView: func.isRequired,
+}
 
 function Quote(props) {
   return (
@@ -35,17 +42,9 @@ function Quote(props) {
   )
 }
 
-Quote.propTypes = {
-  text: PropTypes.string,
-  author: PropTypes.string,
-  generateQuote: PropTypes.func,
-  toggleView: PropTypes.func,
-}
+const mapStateToProps = state => ({
+  goofyQuote: state.goofyQuote,
+})
 
-const mapStateToProps = state => {
-  return {
-    goofyQuote: state.goofyQuote,
-  }
-}
-
+Quote.propTypes = propTypes
 export default connect(mapStateToProps)(Quote)
