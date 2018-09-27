@@ -1,5 +1,5 @@
 # QUONABLE
-Wisdom, everywhere, kinda.
+## Wisdom, everywhere, kinda.
 
 Wise quotes from goofy people; goofy quotes from wise people.
 
