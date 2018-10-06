@@ -33,7 +33,7 @@ class Quote extends Component {
             <cite className="f5 ttu tracked fs-normal authorName">- {author}</cite>
           </blockquote>
         </div>
-        <div className="pa4 mt2 sans-serif">
+        <div className="pa4 mt2 mb2 sans-serif">
           <Button onClick={() => generateQuote(goofyQuote)}>New Quote</Button>
           <Button
             className="ml3"

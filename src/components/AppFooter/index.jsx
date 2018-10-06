@@ -5,6 +5,7 @@ import './AppFooter.css'
 function AppFooter() {
   return (
     <footer className="sans-serif bg-dark-gray">
+      <div className="footer-tab bg-dark-gray" />
       <div className="pv3 center w-80 mw7">
         <h3 className="f5">quone</h3>
         <p className="moon-gray">
