@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import { roll } from './utils/quote-helpers'
+import { roll } from '../utils/quote-helpers'
 
 // DATA FILES
 // ------------------------------------
-import authorData from './authors'
-import quoteData from './quotes'
+import authorData from '../authors'
+import quoteData from '../quotes'
 
 // ACTION CONSTANTS
 // ------------------------------------
@@ -65,9 +65,7 @@ export const getGoofyQuote = ({
   quoteIndex: prevQuoteIndex,
 } = {}) => {
   const quoteIndex = roll(quoteData.goofy.length, prevQuoteIndex)
-  console.log({ quoteIndex })
   const authorIndex = roll(authorData.real.length, prevAuthIndex)
-  console.log({ authorIndex })
   const text = quoteData.goofy[quoteIndex].text
   const author = authorData.real[authorIndex].name
 

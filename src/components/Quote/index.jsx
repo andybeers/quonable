@@ -4,8 +4,8 @@ import { bool, func, number, string } from 'prop-types'
 
 import AppHeader from '../AppHeader'
 import Button from '../Button'
+import { actionCreators, selectors } from '../../dux/dux'
 import './Quote.css'
-import { actionCreators, selectors } from '../../dux'
 
 class Quote extends Component {
   static propTypes = {
