@@ -1,29 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bool, func, string } from 'prop-types'
+import { bool, func, number, string } from 'prop-types'
 
 import AppHeader from '../AppHeader'
 import Button from '../Button'
+import { actionCreators, selectors } from '../../dux/dux'
 import './Quote.css'
-import { quoteActionCreators } from '../../dux'
 
 class Quote extends Component {
   static propTypes = {
     author: string.isRequired,
-    generateQuote: func.isRequired,
+    authorIndex: number.isRequired,
+    getGoofyQuote: func.isRequired,
+    getRealQuote: func.isRequired,
     goofyQuote: bool.isRequired,
+    quoteIndex: number.isRequired,
     text: string.isRequired,
     toggleView: func.isRequired,
   }
 
   componentDidMount() {
-    const { generateQuote, goofyQuote } = this.props
+    const { getGoofyQuote } = this.props
 
-    generateQuote(goofyQuote)
+    getGoofyQuote()
   }
 
   render() {
-    const { author, generateQuote, goofyQuote, text, toggleView } = this.props
+    const {
+      author,
+      authorIndex,
+      getGoofyQuote,
+      getRealQuote,
+      goofyQuote,
+      quoteIndex,
+      text,
+      toggleView,
+    } = this.props
+
+    const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
+    const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
+
     return (
       <main className={`quote-body-${goofyQuote ? 'a' : 'b'}`}>
         <AppHeader />
@@ -34,12 +50,14 @@ class Quote extends Component {
           </blockquote>
         </div>
         <div className="pa4 mt2 mb2 sans-serif">
-          <Button onClick={() => generateQuote(goofyQuote)}>New Quote</Button>
+          <Button onClick={() => fetchQuote({ authorIndex, quoteIndex })}>
+            New Quote
+          </Button>
           <Button
             className="ml3"
             onClick={() => {
-              generateQuote(!goofyQuote)
               toggleView()
+              fetchOpposite()
             }}
           >
             Invert Wisdom
@@ -51,14 +69,17 @@ class Quote extends Component {
 }
 
 const mapStateToProps = store => ({
-  author: store.author,
-  text: store.text,
-  goofyQuote: store.goofyQuote,
+  author: selectors.getAuthor(store),
+  authorIndex: selectors.getAuthorIndex(store),
+  goofyQuote: selectors.getQuoteState(store),
+  quoteIndex: selectors.getQuoteIndex(store),
+  text: selectors.getQuote(store),
 })
 
 const mapDispatchToProps = {
-  generateQuote: quoteActionCreators.generateQuote,
-  toggleView: quoteActionCreators.toggleView,
+  getGoofyQuote: actionCreators.getGoofyQuote,
+  getRealQuote: actionCreators.getRealQuote,
+  toggleView: actionCreators.toggleView,
 }
 
 export default connect(
