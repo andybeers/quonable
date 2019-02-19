@@ -31,7 +31,7 @@ const goofy = [
   { name: 'ARNOLD SCHWARZENEGGER IN "JINGLE ALL THE WAY"' },
   { name: 'JUDGE DREDD' },
   { name: 'TIM "THE TOOL MAN" TAYLOR' },
-  { name: 'JADEN SMITH' }
+  { name: 'JADEN SMITH' },
 ]
 
 const real = [
@@ -53,7 +53,7 @@ const real = [
   { name: 'KURT VONNEGUT' },
   { name: 'BERTRAND RUSSEL' },
   { name: 'WINSTON CHURCHILL' },
-  { name: 'PRINCESS DIANA' }
+  { name: 'QUEEN ELIZABETH' },
 ]
 
 export default { goofy, real }
