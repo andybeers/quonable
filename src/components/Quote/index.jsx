@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bool, func, number, string } from 'prop-types'
+import classNames from 'classnames'
 
 import AppHeader from '../AppHeader'
 import Button from '../Button'
 import { actionCreators, selectors } from '../../dux/dux'
+
 import './Quote.css'
 
 const propTypes = {
@@ -34,13 +36,19 @@ const Quote = ({
     getGoofyQuote()
   }, [])
 
+  const [hidden, setHidden] = useState(false)
   const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
   const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
 
   return (
     <main className={`quote-body-${goofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
-      <div className="w-80-ns mw-4-ns mv4 pa4 center">
+      <div
+        id="quote-section"
+        className={classNames('w-80-ns mw-4-ns mv4 pa4 center', {
+          hidden,
+        })}
+      >
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
           <p className="f4 f3-m f2-l lh-copy mt0 white">{text}</p>
           <cite className="f5 ttu tracked fs-normal authorName">- {author}</cite>
@@ -49,7 +57,13 @@ const Quote = ({
       <div className="pa4 mt2 mb2 sans-serif">
         <Button
           className="mr3"
-          onClick={() => fetchQuote({ authorIndex, quoteIndex })}
+          onClick={() => {
+            setHidden(true)
+            setTimeout(() => {
+              fetchQuote({ authorIndex, quoteIndex })
+              setHidden(false)
+            }, 200)
+          }}
         >
           New Quote
         </Button>
