@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { bool, func, number, string } from 'prop-types'
 import classNames from 'classnames'
@@ -30,21 +30,32 @@ const Quote = ({
   text,
   toggleView,
 }) => {
+  const [hidden, setHidden] = useState(false)
+
+  const quoteEl = useRef(null)
+  const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
+  const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
+
+  const setStuff = e => {
+    console.log('setting!', e)
+    setHidden(false)
+    fetchQuote({ authorIndex, quoteIndex })
+  }
+
   // Load quote on mount
   // Empty array `useEffect` argument tells React to only call this once
   useEffect(() => {
+    console.log('running useffect', quoteEl.current)
+    quoteEl.current.addEventListener('transitionend', setStuff)
     getGoofyQuote()
   }, [])
-
-  const [hidden, setHidden] = useState(false)
-  const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
-  const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
 
   return (
     <main className={`quote-body-${goofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
       <div
         id="quote-section"
+        ref={quoteEl}
         className={classNames('w-80-ns mw-4-ns mv4 pa4 center', {
           hidden,
         })}
@@ -59,10 +70,6 @@ const Quote = ({
           className="mr3"
           onClick={() => {
             setHidden(true)
-            setTimeout(() => {
-              fetchQuote({ authorIndex, quoteIndex })
-              setHidden(false)
-            }, 200)
           }}
         >
           New Quote
