@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { bool, func, number, string } from 'prop-types'
+import classNames from 'classnames'
 
 import AppHeader from '../AppHeader'
 import Button from '../Button'
 import { actionCreators, selectors } from '../../dux/dux'
+
 import './Quote.css'
 
 const propTypes = {
@@ -28,19 +30,45 @@ const Quote = ({
   text,
   toggleView,
 }) => {
-  // Load quote on mount
-  // Empty array `useEffect` argument tells React to only call this once
-  useEffect(() => {
-    getGoofyQuote()
-  }, [])
+  const [hidden, setHidden] = useState(false)
+  const quoteEl = useRef(null)
 
   const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
   const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
 
+  const fadeInNewQuote = e => {
+    const { classList } = e.target
+    // Make sure this only fires after the fadeout animation
+    if (classList.contains('o-0')) {
+      setHidden(false)
+      fetchQuote({ authorIndex, quoteIndex })
+    }
+  }
+
+  // Load initial quote on mount
+  // Set fadeout event listener
+  // Empty array `useEffect` argument tells React to only call this once
+  useEffect(() => {
+    quoteEl.current.addEventListener('transitionend', fadeInNewQuote)
+    getGoofyQuote()
+
+    // Returning a function from `useEffect` tells react to run on component unmount
+    return () => {
+      quoteEl.current.removeEventListener('transitionend', fadeInNewQuote)
+    }
+  }, [])
+
   return (
     <main className={`quote-body-${goofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
-      <div className="w-80-ns mw-4-ns mv4 pa4 center">
+      <div
+        id="quote-section"
+        ref={quoteEl}
+        className={classNames('w-80-ns mw-4-ns mv4 pa4 center', {
+          'o-0': hidden,
+          'o-100': !hidden,
+        })}
+      >
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
           <p className="f4 f3-m f2-l lh-copy mt0 white">{text}</p>
           <cite className="f5 ttu tracked fs-normal authorName">- {author}</cite>
@@ -49,7 +77,9 @@ const Quote = ({
       <div className="pa4 mt2 mb2 sans-serif">
         <Button
           className="mr3"
-          onClick={() => fetchQuote({ authorIndex, quoteIndex })}
+          onClick={() => {
+            setHidden(true)
+          }}
         >
           New Quote
         </Button>
