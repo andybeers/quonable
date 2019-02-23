@@ -31,23 +31,31 @@ const Quote = ({
   toggleView,
 }) => {
   const [hidden, setHidden] = useState(false)
-
   const quoteEl = useRef(null)
+
   const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
   const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
 
-  const setStuff = e => {
-    console.log('setting!', e)
-    setHidden(false)
-    fetchQuote({ authorIndex, quoteIndex })
+  const fadeInNewQuote = e => {
+    const { classList } = e.target
+    // Make sure this only fires after the fadeout animation
+    if (classList.contains('o-0')) {
+      setHidden(false)
+      fetchQuote({ authorIndex, quoteIndex })
+    }
   }
 
-  // Load quote on mount
+  // Load initial quote on mount
+  // Set fadeout event listener
   // Empty array `useEffect` argument tells React to only call this once
   useEffect(() => {
-    console.log('running useffect', quoteEl.current)
-    quoteEl.current.addEventListener('transitionend', setStuff)
+    quoteEl.current.addEventListener('transitionend', fadeInNewQuote)
     getGoofyQuote()
+
+    // Returning a function from `useEffect` tells react to run on component unmount
+    return () => {
+      quoteEl.current.removeEventListener('transitionend', fadeInNewQuote)
+    }
   }, [])
 
   return (
@@ -57,7 +65,8 @@ const Quote = ({
         id="quote-section"
         ref={quoteEl}
         className={classNames('w-80-ns mw-4-ns mv4 pa4 center', {
-          hidden,
+          'o-0': hidden,
+          'o-100': !hidden,
         })}
       >
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
