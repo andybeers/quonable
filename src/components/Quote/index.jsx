@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { bool, func, number, string } from 'prop-types'
 import classNames from 'classnames'
@@ -45,17 +45,20 @@ const Quote = ({
     }
   }
 
-  // Load initial quote on mount
   // Set fadeout event listener
   // Empty array `useEffect` argument tells React to only call this once
   useEffect(() => {
     quoteEl.current.addEventListener('transitionend', fadeInNewQuote)
-    getGoofyQuote()
 
     // Returning a function from `useEffect` tells react to run on component unmount
     return () => {
       quoteEl.current.removeEventListener('transitionend', fadeInNewQuote)
     }
+  }, [])
+
+  // Load initial quote on mount
+  useLayoutEffect(() => {
+    getGoofyQuote()
   }, [])
 
   return (
