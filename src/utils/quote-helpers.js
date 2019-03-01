@@ -18,5 +18,5 @@ export const roll = (maxRange, prevIndex = null) => {
   }
 
   // 💥 Stale... spin the wheel again
-  return roll(maxRange, prevIndex)
+  return roll(maxRange, result)
 }

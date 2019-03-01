@@ -1,17 +1,21 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { applyMiddleware, createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
 import 'normalize.css'
 import './index.css'
 
 import App from './components/App'
 import rootReducer from './dux/dux'
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-)
+const storeEnhancers =
+  process.env.NODE_ENV === 'development'
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    : compose
+
+const store = createStore(rootReducer, storeEnhancers(applyMiddleware(thunk)))
 
 render(
   <Provider store={store}>

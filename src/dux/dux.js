@@ -29,7 +29,7 @@ const author = (state = '', { author, type }) => {
       return state
   }
 }
-const goofyQuote = (state = true, { type }) => {
+const isGoofyQuote = (state = true, { type }) => {
   switch (type) {
     case TOGGLE_VIEW:
       return !state
@@ -51,7 +51,7 @@ const indexData = (
 
 const rootReducer = combineReducers({
   author,
-  goofyQuote,
+  isGoofyQuote,
   indexData,
   text,
 })
@@ -60,47 +60,39 @@ export default rootReducer
 
 // ACTION CREATORS
 // ------------------------------------
-export const getGoofyQuote = ({
-  authorIndex: prevAuthIndex,
-  quoteIndex: prevQuoteIndex,
-} = {}) => {
-  const quoteIndex = roll(quoteData.goofy.length, prevQuoteIndex)
-  const authorIndex = roll(authorData.real.length, prevAuthIndex)
-  const text = quoteData.goofy[quoteIndex].text
-  const author = authorData.real[authorIndex].name
+export const generateQuote = () => (dispatch, getState) => {
+  const {
+    isGoofyQuote,
+    indexData: { authorIndex: prevAuthorIndex, quoteIndex: prevQuoteIndex },
+  } = getState()
 
-  return {
+  let quoteIndex, authorIndex, text, author
+
+  if (isGoofyQuote) {
+    quoteIndex = roll(quoteData.goofy.length, prevQuoteIndex)
+    authorIndex = roll(authorData.real.length, prevAuthorIndex)
+    text = quoteData.goofy[quoteIndex].text
+    author = authorData.real[authorIndex].name
+  } else {
+    quoteIndex = roll(quoteData.real.length, prevQuoteIndex)
+    authorIndex = roll(authorData.goofy.length, prevAuthorIndex)
+    text = quoteData.real[quoteIndex].text
+    author = authorData.goofy[authorIndex].name
+  }
+
+  return dispatch({
     type: GENERATE_QUOTE,
     author,
     authorIndex,
     quoteIndex,
     text,
-  }
-}
-
-export const getRealQuote = ({
-  authorIndex: prevAuthIndex,
-  quoteIndex: prevQuoteIndex,
-} = {}) => {
-  const quoteIndex = roll(quoteData.real.length, prevQuoteIndex)
-  const authorIndex = roll(authorData.goofy.length, prevAuthIndex)
-  const text = quoteData.real[quoteIndex].text
-  const author = authorData.goofy[authorIndex].name
-
-  return {
-    type: GENERATE_QUOTE,
-    author,
-    authorIndex,
-    quoteIndex,
-    text,
-  }
+  })
 }
 
 export const toggleView = () => ({ type: TOGGLE_VIEW })
 
 export const actionCreators = {
-  getGoofyQuote,
-  getRealQuote,
+  generateQuote,
   toggleView,
 }
 
@@ -110,12 +102,12 @@ const getAuthor = store => store.author
 const getAuthorIndex = store => store.indexData.authorIndex
 const getQuote = store => store.text
 const getQuoteIndex = store => store.indexData.quoteIndex
-const getQuoteState = store => store.goofyQuote
+const getIsGoofyQuote = store => store.isGoofyQuote
 
 export const selectors = {
   getAuthor,
   getAuthorIndex,
   getQuoteIndex,
-  getQuoteState,
+  getIsGoofyQuote,
   getQuote,
 }
