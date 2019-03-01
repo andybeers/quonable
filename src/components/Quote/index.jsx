@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
-import { bool, func, number, string } from 'prop-types'
+import { bool, func, string } from 'prop-types'
 import classNames from 'classnames'
 
 import AppHeader from '../AppHeader'
@@ -11,38 +11,28 @@ import './Quote.css'
 
 const propTypes = {
   author: string.isRequired,
-  authorIndex: number.isRequired,
-  getGoofyQuote: func.isRequired,
-  getRealQuote: func.isRequired,
-  goofyQuote: bool.isRequired,
-  quoteIndex: number.isRequired,
+  generateQuote: func.isRequired,
+  isGoofyQuote: bool.isRequired,
   text: string.isRequired,
   toggleView: func.isRequired,
 }
 
-const Quote = ({
-  author,
-  authorIndex,
-  getGoofyQuote,
-  getRealQuote,
-  goofyQuote,
-  quoteIndex,
-  text,
-  toggleView,
-}) => {
+const Quote = ({ author, generateQuote, isGoofyQuote, text, toggleView }) => {
   const [hidden, setHidden] = useState(false)
   const quoteEl = useRef(null)
-
-  const fetchQuote = goofyQuote ? getGoofyQuote : getRealQuote
-  const fetchOpposite = goofyQuote ? getRealQuote : getGoofyQuote
 
   const fadeInNewQuote = e => {
     const { classList } = e.target
     // Make sure this only fires after the fadeout animation
     if (classList.contains('o-0')) {
       setHidden(false)
-      fetchQuote({ authorIndex, quoteIndex })
+      generateQuote()
     }
+  }
+
+  const handleToggleView = () => {
+    toggleView()
+    generateQuote()
   }
 
   // Set fadeout event listener
@@ -58,11 +48,11 @@ const Quote = ({
 
   // Load initial quote on mount
   useLayoutEffect(() => {
-    getGoofyQuote()
+    generateQuote()
   }, [])
 
   return (
-    <main className={`quote-body-${goofyQuote ? 'a' : 'b'}`}>
+    <main className={`quote-body-${isGoofyQuote ? 'a' : 'b'}`}>
       <AppHeader />
       <div
         id="quote-section"
@@ -86,14 +76,7 @@ const Quote = ({
         >
           New Quote
         </Button>
-        <Button
-          onClick={() => {
-            toggleView()
-            fetchOpposite()
-          }}
-        >
-          Invert Wisdom
-        </Button>
+        <Button onClick={handleToggleView}>Invert Wisdom</Button>
       </div>
     </main>
   )
@@ -103,15 +86,12 @@ Quote.propTypes = propTypes
 
 const mapStateToProps = store => ({
   author: selectors.getAuthor(store),
-  authorIndex: selectors.getAuthorIndex(store),
-  goofyQuote: selectors.getQuoteState(store),
-  quoteIndex: selectors.getQuoteIndex(store),
+  isGoofyQuote: selectors.getIsGoofyQuote(store),
   text: selectors.getQuote(store),
 })
 
 const mapDispatchToProps = {
-  getGoofyQuote: actionCreators.getGoofyQuote,
-  getRealQuote: actionCreators.getRealQuote,
+  generateQuote: actionCreators.generateQuote,
   toggleView: actionCreators.toggleView,
 }
 
