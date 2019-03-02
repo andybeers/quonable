@@ -1,15 +1,17 @@
 # QUONABLE
+https://andybeers.github.io/quonable/
 
-## Wisdom, everywhere, kinda.
+#### _Wisdom, everywhere, kinda._
 
 Wise quotes from goofy people; goofy quotes from wise people.
 
-Hilariously overbuilt with React, Redux, and Tachyons
-
-Live at: https://andybeers.github.io/quonable/
+Hilariously overengineered using:
+- ✅ React (hooks!)
+- ✅ Redux
+- ✅ Tachyons
 
 <img src="https://i.imgur.com/z5EEbmY.jpg" alt="Quonable screenshot">
 
 ## Contributing
 
-Want to add a quote or author? Open a PR!
+Contributions welcome, _especially_ if you'd like to add to the list of quotes or authors.
