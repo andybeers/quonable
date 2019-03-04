@@ -34,5 +34,5 @@
     "prestart": "npm run css",
     "prebuild": "npm run css"
   },
-  "homepage": "http://quonable.com"
+  "homepage": "https://quonable.com"
 }
