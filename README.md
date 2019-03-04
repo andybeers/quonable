@@ -1,5 +1,5 @@
 # QUONABLE
-https://andybeers.github.io/quonable/
+https://quonable.com
 
 #### _Wisdom, everywhere, kinda._
 
