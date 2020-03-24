@@ -6,6 +6,7 @@ https://quonable.com
 Wise quotes from goofy people; goofy quotes from wise people.
 
 Hilariously overengineered using:
+
 ✔️ React
 
 ✔️ Redux
