@@ -6,9 +6,12 @@ https://quonable.com
 Wise quotes from goofy people; goofy quotes from wise people.
 
 Hilariously overengineered using:
-- ✅ React (hooks!)
-- ✅ Redux
-- ✅ Tachyons
+✔️ React
+
+✔️ Redux
+
+✔️ Tachyons
+
 
 <img src="https://i.imgur.com/z5EEbmY.jpg" alt="Quonable screenshot">
 
