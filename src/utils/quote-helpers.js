@@ -10,13 +10,13 @@
  * @param {Number} prevIndex Previous index to blacklist
  */
 export const roll = (maxRange, prevIndex = null) => {
-  const result = Math.floor(Math.random() * maxRange)
+  const result = Math.floor(Math.random() * maxRange);
 
   // ✅ Return good data!
   if (result !== prevIndex) {
-    return result
+    return result;
   }
 
   // 💥 Stale... spin the wheel again
-  return roll(maxRange, result)
-}
+  return roll(maxRange, result);
+};
