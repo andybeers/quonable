@@ -1,14 +1,14 @@
-import React from 'react'
-import { func, string } from 'prop-types'
+import React from "react";
+import { func, string } from "prop-types";
 
 const propTypes = {
   className: string,
   onClick: func.isRequired,
-}
+};
 
 const defaultProps = {
-  className: '',
-}
+  className: "",
+};
 
 function Button({ children, className, onClick }) {
   return (
@@ -18,9 +18,9 @@ function Button({ children, className, onClick }) {
     >
       {children}
     </button>
-  )
+  );
 }
 
-Button.propTypes = propTypes
-Button.defaultProps = defaultProps
-export default Button
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
+export default Button;

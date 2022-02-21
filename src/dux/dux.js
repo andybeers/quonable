@@ -1,62 +1,62 @@
-import { combineReducers } from 'redux'
-import { roll } from '../utils/quote-helpers'
+import { combineReducers } from "redux";
+import { roll } from "../utils/quote-helpers";
 
 // DATA FILES
 // ------------------------------------
-import authorData from '../authors'
-import quoteData from '../quotes'
+import authorData from "../authors";
+import quoteData from "../quotes";
 
 // ACTION CONSTANTS
 // ------------------------------------
-const TOGGLE_VIEW = 'TOGGLE_VIEW'
-const GENERATE_QUOTE = 'GENERATE_QUOTE'
+const TOGGLE_VIEW = "TOGGLE_VIEW";
+const GENERATE_QUOTE = "GENERATE_QUOTE";
 
 // REDUCERS
 // ------------------------------------
-const text = (state = '', { text, type }) => {
+const text = (state = "", { text, type }) => {
   switch (type) {
     case GENERATE_QUOTE:
-      return text
+      return text;
     default:
-      return state
+      return state;
   }
-}
-const author = (state = '', { author, type }) => {
+};
+const author = (state = "", { author, type }) => {
   switch (type) {
     case GENERATE_QUOTE:
-      return author
+      return author;
     default:
-      return state
+      return state;
   }
-}
+};
 const isGoofyQuote = (state = true, { type }) => {
   switch (type) {
     case TOGGLE_VIEW:
-      return !state
+      return !state;
     default:
-      return state
+      return state;
   }
-}
+};
 const indexData = (
   state = { authorIndex: 0, quoteIndex: 0 },
-  { authorIndex, quoteIndex, type },
+  { authorIndex, quoteIndex, type }
 ) => {
   switch (type) {
     case GENERATE_QUOTE:
-      return { authorIndex, quoteIndex }
+      return { authorIndex, quoteIndex };
     default:
-      return state
+      return state;
   }
-}
+};
 
 const rootReducer = combineReducers({
   author,
   isGoofyQuote,
   indexData,
   text,
-})
+});
 
-export default rootReducer
+export default rootReducer;
 
 // ACTION CREATORS
 // ------------------------------------
@@ -64,20 +64,20 @@ export const generateQuote = () => (dispatch, getState) => {
   const {
     isGoofyQuote,
     indexData: { authorIndex: prevAuthorIndex, quoteIndex: prevQuoteIndex },
-  } = getState()
+  } = getState();
 
-  let quoteIndex, authorIndex, text, author
+  let quoteIndex, authorIndex, text, author;
 
   if (isGoofyQuote) {
-    quoteIndex = roll(quoteData.goofy.length, prevQuoteIndex)
-    authorIndex = roll(authorData.real.length, prevAuthorIndex)
-    text = quoteData.goofy[quoteIndex].text
-    author = authorData.real[authorIndex].name
+    quoteIndex = roll(quoteData.goofy.length, prevQuoteIndex);
+    authorIndex = roll(authorData.real.length, prevAuthorIndex);
+    text = quoteData.goofy[quoteIndex].text;
+    author = authorData.real[authorIndex].name;
   } else {
-    quoteIndex = roll(quoteData.real.length, prevQuoteIndex)
-    authorIndex = roll(authorData.goofy.length, prevAuthorIndex)
-    text = quoteData.real[quoteIndex].text
-    author = authorData.goofy[authorIndex].name
+    quoteIndex = roll(quoteData.real.length, prevQuoteIndex);
+    authorIndex = roll(authorData.goofy.length, prevAuthorIndex);
+    text = quoteData.real[quoteIndex].text;
+    author = authorData.goofy[authorIndex].name;
   }
 
   return dispatch({
@@ -86,23 +86,23 @@ export const generateQuote = () => (dispatch, getState) => {
     authorIndex,
     quoteIndex,
     text,
-  })
-}
+  });
+};
 
-export const toggleView = () => ({ type: TOGGLE_VIEW })
+export const toggleView = () => ({ type: TOGGLE_VIEW });
 
 export const actionCreators = {
   generateQuote,
   toggleView,
-}
+};
 
 // SELECTORS
 // ------------------------------------
-const getAuthor = store => store.author
-const getAuthorIndex = store => store.indexData.authorIndex
-const getQuote = store => store.text
-const getQuoteIndex = store => store.indexData.quoteIndex
-const getIsGoofyQuote = store => store.isGoofyQuote
+const getAuthor = (store) => store.author;
+const getAuthorIndex = (store) => store.indexData.authorIndex;
+const getQuote = (store) => store.text;
+const getQuoteIndex = (store) => store.indexData.quoteIndex;
+const getIsGoofyQuote = (store) => store.isGoofyQuote;
 
 export const selectors = {
   getAuthor,
@@ -110,4 +110,4 @@ export const selectors = {
   getQuoteIndex,
   getIsGoofyQuote,
   getQuote,
-}
+};

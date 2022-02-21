@@ -39,4 +39,6 @@ const real = [
   { text: 'Men at some time are the masters of their fates: The fault, dear Brutus, is not in our stars, but in ourselves, that we are underlings.' },
 ];
 
-export default { goofy, real };
+const quotes = { goofy, real };
+
+export default quotes;

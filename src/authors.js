@@ -56,4 +56,6 @@ const real = [
   { name: 'QUEEN ELIZABETH' },
 ]
 
-export default { goofy, real }
+const authors = { goofy, real}
+
+export default authors

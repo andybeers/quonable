@@ -1,27 +1,22 @@
 {
   "name": "quonable",
   "version": "1.0.0",
-  "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "normalize.css": "^5.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-redux": "^6.0.0",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "tachyons": "^4.10.0",
-    "tachyons-cli": "^1.3.2"
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
-    "enzyme": "^3.9.0",
-    "enzyme-to-json": "^3.3.5",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-react": "^7.28.0",
     "gh-pages": "^2.0.1",
-    "react-addons-test-utils": "^15.6.2",
-    "react-scripts": "1.1.5",
-    "react-testing-library": "^5.8.0"
+    "prettier": "^2.5.1",
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,9 +25,26 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "css": "tachyons src/styles/tachy.css > src/index.css --minify",
-    "prestart": "npm run css",
-    "prebuild": "npm run css"
+    "prettier-all": "prettier --write '{src,test,webpack}/**/*.{js,jsx,ts,tsx,scss}'"
   },
-  "homepage": "https://quonable.com"
+  "homepage": "https://quonable.com",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
+  }
 }
