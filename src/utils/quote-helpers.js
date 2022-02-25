@@ -5,18 +5,15 @@
  * it'll re-roll until we get something new. This prevents
  * the user from seeing the same Quote or Author twice in
  * a row.
- *
- * @param {Number} maxRange Data array member length
- * @param {Number} prevIndex Previous index to blacklist
  */
-export const roll = (maxRange, prevIndex = null) => {
-  const result = Math.floor(Math.random() * maxRange);
+export const roll = ({ max, indexToReroll = null }) => {
+  const index = Math.floor(Math.random() * max);
 
   // ✅ Return good data!
-  if (result !== prevIndex) {
-    return result;
+  if (index !== indexToReroll) {
+    return index;
   }
 
   // 💥 Stale... spin the wheel again
-  return roll(maxRange, result);
+  return roll({ max, indexToReroll: index });
 };

@@ -1,25 +1,53 @@
+import cx from "classnames";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { connect } from "react-redux";
-import { bool, func, string } from "prop-types";
-import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
 
+import authors from "../../authors";
+import quotes from "../../quotes";
+import { roll } from "../../utils/quote-helpers";
 import AppHeader from "../AppHeader";
 import Button from "../Button";
-import { actionCreators, selectors } from "../../dux/dux";
-
 import "./Quote.css";
+import { generateQuote, setMode } from "./quoteSlice";
 
-const propTypes = {
-  author: string.isRequired,
-  generateQuote: func.isRequired,
-  isGoofyQuote: bool.isRequired,
-  text: string.isRequired,
-  toggleView: func.isRequired,
-};
+function getOppositeMode(mode) {
+  return mode === "goofy" ? "serious" : "goofy";
+}
 
-const Quote = ({ author, generateQuote, isGoofyQuote, text, toggleView }) => {
-  const [hidden, setHidden] = useState(false);
+const Quote = () => {
   const quoteEl = useRef();
+  const dispatch = useDispatch();
+
+  const [hidden, setHidden] = useState(false);
+
+  const author = useSelector((state) => state.author);
+  const authorIndex = useSelector((state) => state.authorIndex);
+  const quote = useSelector((state) => state.quote);
+  const quoteIndex = useSelector((state) => state.quoteIndex);
+  const mode = useSelector((state) => state.mode);
+
+  const rollAndSetNewQuote = React.useCallback(() => {
+    const maxQuoteRange =
+      mode === "goofy" ? quotes.goofy.length - 1 : quotes.serious.length - 1;
+    const maxAuthorRange =
+      mode === "goofy" ? authors.serious.length - 1 : authors.goofy.length - 1;
+
+    const newQuoteIndex = roll({
+      max: maxQuoteRange,
+      indexToReroll: quoteIndex,
+    });
+    const newAuthorIndex = roll({
+      max: maxAuthorRange,
+      indexToReroll: authorIndex,
+    });
+
+    dispatch(
+      generateQuote({
+        quote: quotes[mode][newQuoteIndex],
+        author: authors[getOppositeMode(mode)][newAuthorIndex],
+      })
+    );
+  }, [authorIndex, dispatch, mode, quoteIndex]);
 
   const fadeInNewQuote = React.useCallback(
     (e) => {
@@ -27,16 +55,16 @@ const Quote = ({ author, generateQuote, isGoofyQuote, text, toggleView }) => {
       // Make sure this only fires after the fadeout animation
       if (classList.contains("o-0")) {
         setHidden(false);
-        generateQuote();
+        rollAndSetNewQuote();
       }
     },
-    [generateQuote]
+    [rollAndSetNewQuote]
   );
 
-  const handleToggleView = () => {
-    toggleView();
-    generateQuote();
-  };
+  function handleSetMode() {
+    dispatch(setMode(mode === "goofy" ? "serious" : "goofy"));
+    rollAndSetNewQuote();
+  }
 
   useEffect(() => {
     const quoteElRef = quoteEl.current;
@@ -51,22 +79,22 @@ const Quote = ({ author, generateQuote, isGoofyQuote, text, toggleView }) => {
   }, [fadeInNewQuote]);
 
   useLayoutEffect(() => {
-    generateQuote();
-  }, [generateQuote]);
+    rollAndSetNewQuote();
+  }, [rollAndSetNewQuote]);
 
   return (
-    <main className={`quote-body-${isGoofyQuote ? "a" : "b"}`}>
+    <main className={`quote-body-${mode === "goofy" ? "a" : "b"}`}>
       <AppHeader />
       <div
         id="quote-section"
         ref={quoteEl}
-        className={classNames("w-80-ns mw-4-ns mv4 pa4 center", {
+        className={cx("w-80-ns mw-4-ns mv4 pa4 center", {
           "o-0": hidden,
           "o-100": !hidden,
         })}
       >
         <blockquote className="athelas ml0 mt0 pl4 bl bw2 b--light-blue">
-          <p className="f4 f3-m f2-l lh-copy mt0 white">{text}</p>
+          <p className="f4 f3-m f2-l lh-copy mt0 white">{quote}</p>
           <cite className="f5 ttu tracked fs-normal authorName">
             - {author}
           </cite>
@@ -81,23 +109,10 @@ const Quote = ({ author, generateQuote, isGoofyQuote, text, toggleView }) => {
         >
           New Quote
         </Button>
-        <Button onClick={handleToggleView}>Invert Wisdom</Button>
+        <Button onClick={handleSetMode}>Invert Wisdom</Button>
       </div>
     </main>
   );
 };
 
-Quote.propTypes = propTypes;
-
-const mapStateToProps = (store) => ({
-  author: selectors.getAuthor(store),
-  isGoofyQuote: selectors.getIsGoofyQuote(store),
-  text: selectors.getQuote(store),
-});
-
-const mapDispatchToProps = {
-  generateQuote: actionCreators.generateQuote,
-  toggleView: actionCreators.toggleView,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Quote);
+export default Quote;

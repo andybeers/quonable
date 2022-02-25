@@ -1,20 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
-import { applyMiddleware, createStore, compose } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 
 import "./vendor/tachyons.min.css";
 
 import App from "./components/App";
-import rootReducer from "./dux/dux";
+import quoteSlice from "./components/Quote/quoteSlice";
 
-const storeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    : compose;
-
-const store = createStore(rootReducer, storeEnhancers(applyMiddleware(thunk)));
+export const store = configureStore({
+  reducer: quoteSlice,
+});
 
 render(
   <Provider store={store}>
