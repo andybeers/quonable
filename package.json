@@ -15,7 +15,6 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-react": "^7.28.0",
-    "gh-pages": "^3.2.3",
     "prettier": "^2.5.1",
     "react-scripts": "^5.0.0"
   },
@@ -23,10 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "echo 'quonable.com' > ./build/CNAME && gh-pages -d build",
-    "prettier-all": "prettier --write '{src,test,webpack}/**/*.{js,jsx,ts,tsx,scss}'"
+    "eject": "react-scripts eject"
   },
   "homepage": "https://quonable.com",
   "browserslist": {
