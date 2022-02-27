@@ -1,11 +1,12 @@
 import React from "react";
+import quonableSvg from "../../imgs/quonable.svg";
 
 import "./AppHeader.css";
 
 function AppHeader() {
   return (
     <header>
-      <h1 className="ma0 pa3">quonable</h1>
+      <img src={quonableSvg} alt="quonable" className="ma0 pa3" />
     </header>
   );
 }

@@ -1,5 +1,4 @@
-header h1 {
-  font-family: 'Sacramento', cursive;
-  font-weight: 400;
-  color: navajowhite;
+img {
+  object-fit: contain;
+  height: 3rem;
 }
