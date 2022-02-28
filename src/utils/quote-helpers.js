@@ -9,11 +9,11 @@
 export const roll = ({ max, indexToReroll = null }) => {
   const index = Math.floor(Math.random() * max);
 
-  // ✅ Return good data!
+  // ✅ Return index if it's not the same as the previous
   if (index !== indexToReroll) {
     return index;
   }
 
-  // 💥 Stale... spin the wheel again
+  // 💥 Stale data, re-roll
   return roll({ max, indexToReroll: index });
 };

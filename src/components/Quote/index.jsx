@@ -44,7 +44,9 @@ const Quote = () => {
     dispatch(
       generateQuote({
         quote: quotes[mode][newQuoteIndex],
+        quoteIndex: newQuoteIndex,
         author: authors[getOppositeMode(mode)][newAuthorIndex],
+        authorIndex: newAuthorIndex,
       })
     );
   }, [authorIndex, dispatch, mode, quoteIndex]);
@@ -70,17 +72,21 @@ const Quote = () => {
     const quoteElRef = quoteEl.current;
 
     if (quoteElRef) {
+      console.log("adding event listener");
       quoteElRef.addEventListener("transitionend", fadeInNewQuote);
     }
 
     return () => {
       quoteElRef.removeEventListener("transitionend", fadeInNewQuote);
     };
-  }, [fadeInNewQuote]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useLayoutEffect(() => {
+    console.log("layout effect firing");
     rollAndSetNewQuote();
-  }, [rollAndSetNewQuote]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className={`quote-body-${mode === "goofy" ? "a" : "b"}`}>

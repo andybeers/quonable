@@ -16,9 +16,11 @@ const quoteSlice = createSlice({
       state.mode = action.payload;
     },
     generateQuote: (state, action) => {
-      const { quote, author } = action.payload;
+      const { quote, quoteIndex, author, authorIndex } = action.payload;
       state.quote = quote;
+      state.quoteIndex = quoteIndex;
       state.author = author;
+      state.authorIndex = authorIndex;
     },
   },
 });
