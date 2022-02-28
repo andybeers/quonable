@@ -1,4 +1,4 @@
-name: Deploy on push to default branch
+name: Build and Deploy
 on:
   push:
     branches:
@@ -6,11 +6,14 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
     steps:
-      - name: Install and Build
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Install and Build 🔧
         run: |
-          echo "branch: ${{ github.ref }}"
-          npm i
+          npm ci
           npm run build
 
       - name: Deploy 🚀
