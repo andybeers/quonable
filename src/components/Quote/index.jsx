@@ -1,55 +1,22 @@
 import cx from "classnames";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import authors from "../../authors";
-import quotes from "../../quotes";
-import { roll } from "../../utils/quote-helpers";
 import AppHeader from "../AppHeader";
 import Button from "../Button";
 import "./Quote.css";
-import { generateQuote, setMode } from "./quoteSlice";
-
-function getOppositeMode(mode) {
-  return mode === "goofy" ? "serious" : "goofy";
-}
+import { setMode } from "./quoteSlice";
+import { useShowNewQuote } from "./useShowNewQuote";
 
 const Quote = () => {
-  const quoteEl = useRef();
+  const quoteEl = React.useRef();
   const dispatch = useDispatch();
-
-  const [hidden, setHidden] = useState(false);
-
   const author = useSelector((state) => state.author);
-  const authorIndex = useSelector((state) => state.authorIndex);
   const quote = useSelector((state) => state.quote);
-  const quoteIndex = useSelector((state) => state.quoteIndex);
   const mode = useSelector((state) => state.mode);
 
-  const rollAndSetNewQuote = React.useCallback(() => {
-    const maxQuoteRange =
-      mode === "goofy" ? quotes.goofy.length - 1 : quotes.serious.length - 1;
-    const maxAuthorRange =
-      mode === "goofy" ? authors.serious.length - 1 : authors.goofy.length - 1;
-
-    const newQuoteIndex = roll({
-      max: maxQuoteRange,
-      indexToReroll: quoteIndex,
-    });
-    const newAuthorIndex = roll({
-      max: maxAuthorRange,
-      indexToReroll: authorIndex,
-    });
-
-    dispatch(
-      generateQuote({
-        quote: quotes[mode][newQuoteIndex],
-        quoteIndex: newQuoteIndex,
-        author: authors[getOppositeMode(mode)][newAuthorIndex],
-        authorIndex: newAuthorIndex,
-      })
-    );
-  }, [authorIndex, dispatch, mode, quoteIndex]);
+  const [hidden, setHidden] = React.useState(false);
+  const { showNewQuote } = useShowNewQuote();
 
   const fadeInNewQuote = React.useCallback(
     (e) => {
@@ -57,34 +24,32 @@ const Quote = () => {
       // Make sure this only fires after the fadeout animation
       if (classList.contains("o-0")) {
         setHidden(false);
-        rollAndSetNewQuote();
+        showNewQuote();
       }
     },
-    [rollAndSetNewQuote]
+    [showNewQuote]
   );
 
   function handleSetMode() {
     dispatch(setMode(mode === "goofy" ? "serious" : "goofy"));
-    rollAndSetNewQuote();
+    showNewQuote();
   }
 
-  useEffect(() => {
+  // Add transition listener
+  React.useEffect(() => {
     const quoteElRef = quoteEl.current;
-
     if (quoteElRef) {
-      console.log("adding event listener");
       quoteElRef.addEventListener("transitionend", fadeInNewQuote);
     }
-
     return () => {
       quoteElRef.removeEventListener("transitionend", fadeInNewQuote);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useLayoutEffect(() => {
-    console.log("layout effect firing");
-    rollAndSetNewQuote();
+  // Generate initial quote
+  React.useEffect(() => {
+    showNewQuote();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

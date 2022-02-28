@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  quote: "test",
+  quote: "",
   quoteIndex: 0,
-  author: "test",
+  author: "",
   authorIndex: 0,
   mode: "goofy",
 };
