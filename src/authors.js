@@ -4,7 +4,6 @@ const goofy = [
   "LIL YACHTY",
   "JOHN MADDEN",
   "PAULY SHORE",
-  "KEANU REEVES",
   "KATY PERRY",
   "OWEN WILSON",
   "JEAN-CLAUDE VAN DAMME",

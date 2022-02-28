@@ -4,13 +4,13 @@
 
 .quote-body-a {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('../../imgs/background1.jpg') no-repeat;
+    url("../../imgs/background1.jpg") no-repeat;
   background-size: cover;
 }
 
 .quote-body-b {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('../../imgs/background2.jpeg') no-repeat;
+    url("../../imgs/background2.jpeg") no-repeat;
   background-size: cover;
 }
 
@@ -20,6 +20,5 @@
 
 button:focus,
 button:hover {
-  outline: 0;
-  border: solid 2px lightblue;
+  border: solid 1px lightblue;
 }
